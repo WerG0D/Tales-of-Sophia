@@ -45,15 +45,16 @@ Pessoas que trabalharam nisto:
         </sub>
       </a>
     </td>
-  <tr>
     <td align="center">
       <a href="#">
-        <img src="https://avatars.githubusercontent.com/u/32278696?v=4" width="100px;" alt="Vito"/><br>
+        <img src="https://avatars.githubusercontent.com/u/32278696?v=4" width="100px;" alt="VITO"/><br>
         <sub>
           <b>VitoUwu</b>
         </sub>
       </a>
     </td>
+  </tr>
+</table>
 
 ## 📝 Licença
 
