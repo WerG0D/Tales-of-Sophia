@@ -8,7 +8,7 @@ class Game:
 		# general setup
 		pygame.init()
 		self.screen = pygame.display.set_mode((WIDTH,HEIGTH))
-		pygame.display.set_caption('Zelda')
+		pygame.display.set_caption('Lorem Ipsum')
 		self.clock = pygame.time.Clock()
 
 		self.level = Level() #instancia o level
