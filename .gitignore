@@ -14,9 +14,10 @@ secrets/
 .secrets/
 token.txt
 .token/txt
-__pycachache__/
 .env
-.__pycachache__/
 __pycache__
 .__pycache__
-cogs/__pycache__/
+Include
+Lib
+Scripts
+pyvenv.cfg
