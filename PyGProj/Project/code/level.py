@@ -31,12 +31,13 @@ class Level:
                 x = col_index * TILESIZE
                 y = row_index * TILESIZE
                 if col  == 'x':
-                    Tile(pos=(x,y), groups=self.visible_sprites)
+                    Tile(pos=(x,y), groups=[self.visible_sprites, self.obstacle_sprites])
                 if col == 'p':
-                    Player(pos=(x,y), groups=self.visible_sprites)
+                    self.player = Player((x,y), [self.visible_sprites], self.obstacle_sprites)
         
 
     def run(self):
         '''Este método vai executar o level em si, e ao mesmo tempo vai dar update nele. Basicamente vai desenhar as coisas na tela. '''
 
         self.visible_sprites.draw(self.display_surface)
+        self.visible_sprites.update()
