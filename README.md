@@ -1,4 +1,4 @@
-# WerBot
+# PyGProject (Placeholder)
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
 
@@ -16,19 +16,6 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 - `Python 3.10+, que pode ser baixado em:` <https://www.python.org/downloads/>
-
-## 🚀 Instalando
-
-Para instalar siga estas etapas:
-
-Windows:
-
-```
-
-° Pygame
-
-```
-
 
 
 ## 🤝 Team:
