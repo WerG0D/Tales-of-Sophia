@@ -42,6 +42,10 @@ class Game:
             self.level.run()
             pg.display.update()
             self.clock.tick(FPS)
+            keys = pg.key.get_pressed()
+            if keys[pg.K_o]:
+                print(self.level.player.rect.x, self.level.player.rect.y) #printa a posição do player
+                print() #debug flag do vscode
 
 
 if __name__ == '__main__':
