@@ -2,7 +2,7 @@ import pygame as pg
 import os
 import sys
 from settings import *
-from level import Level
+from level import Level 
 from player import *
 class Game:
     '''Classe que vai ser responsável por rodar o jogo, e por gerenciar o menu, o level, e tudo mais. A classe principal do game. '''   
@@ -16,8 +16,7 @@ class Game:
         self.clock = pg.time.Clock()
 
         self.level = Level()  # instancia o level
-                              
-
+        
         # sound
         
         main_sound = pg.mixer.Sound('../audio/main.ogg') # carrega o som principal e o coloca em loop
