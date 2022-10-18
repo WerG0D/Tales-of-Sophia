@@ -59,7 +59,7 @@ class CameraGroup(pg.sprite.Group):
         self.offset.y = player.rect.centery - self.half_height
         
         for sprite in sorted (self.sprites(), key=lambda sprite: sprite.rect.centery):
-            offset_rect = sprite.rect.topleft + self.offset
+            offset_rect = sprite.rect.topleft - self.offset
             self.display_surface.blit(sprite.image, offset_rect)
             
             
