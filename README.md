@@ -44,7 +44,7 @@ Pessoas que trabalharam nisto:
       <a href="#">
         <img src="https://avatars.githubusercontent.com/u/94077066?v=4" width="100px;" alt="Wallisu"/><br>
         <sub>
-          <b>Wallisu</b>
+          <b>Wallissu</b>
         </sub>
       </a>
     </td>
