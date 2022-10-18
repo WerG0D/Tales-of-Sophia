@@ -4,8 +4,6 @@ import sys
 from settings import *
 from level import Level
 from player import *
-
-
 class Game:
     '''Classe que vai ser responsável por rodar o jogo, e por gerenciar o menu, o level, e tudo mais. A classe principal do game. '''   
     
@@ -18,7 +16,7 @@ class Game:
         self.clock = pg.time.Clock()
 
         self.level = Level()  # instancia o level
-                              # instancia o player
+                              
 
         # sound
         
