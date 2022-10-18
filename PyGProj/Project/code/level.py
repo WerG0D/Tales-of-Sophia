@@ -3,6 +3,7 @@ from settings import *
 from tile import Tile
 from player import Player
 import debug
+from camera import Camera
 
 class Level:
     '''Essa classe basicamente é o coração do jogo. O level é uma espécie de conteiner que vai conter todos os objetos/sprites do jogo, Sejam eles visiveis ou não. O funcionamento divide os sprites em duas classes, sprites visiveis e sprites de obstáculo, cada um com suas propriedades. Um obstáculo pode ter os dois grupos ao mesmo tempo, como por exemplo uma árvore com hitbox, que vai ter colisão e vai ser desenhada na tela. '''
@@ -11,7 +12,7 @@ class Level:
         
         # Grupo de sprites:
         
-        self.visible_sprites = pg.sprite.Group() # Grupo de sprites visíveis na tela, tudo que for visivel vai ter esse subgrupo
+        self.visible_sprites = Camera() # Grupo de sprites visíveis na tela, tudo que for visivel vai ter esse subgrupo
 
         
         self.obstacle_sprites = pg.sprite.Group() # Grupo de sprites que são obstáculos, ou seja, não podem ser atravessados e terão colisão com o player. Tudo que tiver essa proprieadade vai ter esse subgrupo.
@@ -32,12 +33,13 @@ class Level:
                 x = col_index * TILESIZE
                 y = row_index * TILESIZE
                 if col  == 'x':
-                    Tile(pos=(x,y), groups=[self.visible_sprites, self.obstacle_sprites])
+                    Tile((x,y),[self.visible_sprites, self.obstacle_sprites])
                 if col == 'p':
                     self.player = Player((x,y), [self.visible_sprites], self.obstacle_sprites)
         
 
     def run(self):
         '''Este método vai executar o level em si, e ao mesmo tempo vai dar update nele. Basicamente vai desenhar as coisas na tela. '''
-        self.visible_sprites.draw(self.display_surface)
+        # self.visible_sprites.draw(self.display_surface)
+        self.visible_sprites.custom_draw(self.player)
         self.visible_sprites.update()

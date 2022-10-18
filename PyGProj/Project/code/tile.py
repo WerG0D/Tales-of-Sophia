@@ -8,6 +8,6 @@ class Tile(pg.sprite.Sprite):
         super().__init__(groups)
         self.image = pg.image.load('../graphs/grass/grass_1.png').convert_alpha()
         self.rect = self.image.get_rect(topleft=pos) # get_rect() é usado para criar um retangulo que é herdado da classe Surface. Pegamos o arquivo de imagem do Tile e transformamos ele em no retangulo. O topleft é para definir a posição do tile, que vai ser o canto superior esquerdo do tile.
-    
+        self.hitbox = self.rect.inflate(0,-10)
     
     
