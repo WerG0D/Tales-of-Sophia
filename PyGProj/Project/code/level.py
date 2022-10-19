@@ -2,7 +2,7 @@ import pygame as pg
 from settings import *
 from tile import Tile
 from player import Player
-
+from camera import CameraGroup
 
 class Level:
     '''Essa classe basicamente é o coração do jogo. O level é uma espécie de conteiner que vai conter todos os objetos/sprites do jogo, Sejam eles visiveis ou não. O funcionamento divide os sprites em duas classes, sprites visiveis e sprites de obstáculo, cada um com suas propriedades. Um obstáculo pode ter os dois grupos ao mesmo tempo, como por exemplo uma árvore com hitbox, que vai ter colisão e vai ser desenhada na tela. '''
@@ -42,24 +42,6 @@ class Level:
         self.visible_sprites.custom_draw(self.player)
         self.visible_sprites.update()
         
-class CameraGroup(pg.sprite.Group):
-    '''Esta classe é uma extensão da classe Group do pygame. Ela vai ser usada para fazer a camera funcionar. Basicamente ela vai ser um grupo de sprites, mas com a possibilidade de fazer a camera funcionar. Ela armazena a posição da camera, e vai desenhar os sprites na tela'''
 
-    def __init__(self):
-        super().__init__()
-        
-        self.display_surface = pg.display.get_surface()
-        self.offset = pg.math.Vector2()
-        self.half_width = self.display_surface.get_size()[0] // 2
-        self.half_height = self.display_surface.get_size()[1] // 2
-
-    def custom_draw(self, player):
-        
-        self.offset.x = player.rect.centerx - self.half_width
-        self.offset.y = player.rect.centery - self.half_height
-        
-        for sprite in sorted (self.sprites(), key=lambda sprite: sprite.rect.centery):
-            offset_rect = sprite.rect.topleft - self.offset
-            self.display_surface.blit(sprite.image, offset_rect)
             
             
