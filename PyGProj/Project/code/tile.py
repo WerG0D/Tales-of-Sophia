@@ -12,4 +12,3 @@ class Tile(pg.sprite.Sprite):
         
         self.hitbox = self.rect.inflate(0, -10) # Aqui é criado uma hitbox para o tile, que vai ser usada para verificar se o player colidiu com o tile. O inflate é usado para criar um retangulo maior ou menor que o retangulo original. No caso, estamos criando um retangulo menor, para que a hitbox seja menor que o tile.
     
-    
