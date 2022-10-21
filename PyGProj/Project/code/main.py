@@ -2,10 +2,9 @@ import pygame as pg
 import os
 import sys
 from settings import *
-from level import Level
+from level import Level 
 from player import *
-
-
+from camera import CameraGroup
 class Game:
     '''Classe que vai ser responsável por rodar o jogo, e por gerenciar o menu, o level, e tudo mais. A classe principal do game. '''   
     
@@ -16,16 +15,16 @@ class Game:
         self.screen = pg.display.set_mode((WIDTH, HEIGTH))
         pg.display.set_caption('Lorem Ipsum')
         self.clock = pg.time.Clock()
+        pg.event.set_grab(True)
 
         self.level = Level()  # instancia o level
-                              # instancia o player
-
+        self.camera_group = CameraGroup() # instancia o grupo de camera
         # sound
         
-        main_sound = pg.mixer.Sound('../audio/main.ogg') # carrega o som principal e o coloca em loop
+        '''main_sound = pg.mixer.Sound('../audio/main.ogg') # carrega o som principal e o coloca em loop
         main_sound.set_volume(0.5)
         main_sound.play(loops=-1)
-
+        '''
     def run(self):
         '''Este método vai executar o game em si, e ao mesmo tempo vai dar update nele. Um loop infinito que vai carregar constantemente o level, o player e outras entidades. '''
         while True:
@@ -34,9 +33,12 @@ class Game:
                     pg.quit()
                     sys.exit()
                 if event.type == pg.KEYDOWN:
-                    if event.key == pg.K_m:
-                        pass  # Aqui vai ser adicionado uma tecla pra navegar no menu ou começar o game
-                        # self.level.toggle_menu()
+                    if event.key == pg.K_ESCAPE:
+                        pg.quit()
+                        sys.exit()
+                    
+                if event.type == pg.MOUSEWHEEL:
+                    self.camera_group.zoom_scale += event.y * 0.03
 
             self.screen.fill(WATER_COLOR)
             self.level.run()

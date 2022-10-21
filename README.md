@@ -40,6 +40,14 @@ Pessoas que trabalharam nisto:
         </sub>
       </a>
     </td>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/94077066?v=4" width="100px;" alt="Wallisu"/><br>
+        <sub>
+          <b>Wallissu</b>
+        </sub>
+      </a>
+    </td>
   </tr>
 </table>
 
