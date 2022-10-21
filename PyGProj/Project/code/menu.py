@@ -13,7 +13,7 @@ class Menu:
         pass
 
     def start_game():
-        # Do the job here !
+            game.level.run()
         pass
 
     def options():

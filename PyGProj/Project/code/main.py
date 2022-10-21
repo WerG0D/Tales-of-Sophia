@@ -1,9 +1,11 @@
+import imp
 import pygame as pg
 import os
 import sys
 from settings import *
 from level import Level 
 from player import *
+from menu import *
 class Game:
     '''Classe que vai ser responsável por rodar o jogo, e por gerenciar o menu, o level, e tudo mais. A classe principal do game. '''   
     
@@ -35,6 +37,8 @@ class Game:
                         pg.quit()
                         sys.exit()
                 game.level.visible_sprites.zoom_scroll(event) ## cara, essa parte do codigo busca a instasncia da camera e executa a funcao de zoom no scroll do mouse
+            menu = Menu()
+            
             self.screen.fill(WATER_COLOR)
             self.level.run()
             pg.display.update()
