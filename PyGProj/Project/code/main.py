@@ -18,7 +18,7 @@ class Game:
         pg.event.set_grab(True)
 
         self.level = Level()  # instancia o level
-        self.camera_group = CameraGroup() # instancia o grupo de camera
+
         # sound
         
         '''main_sound = pg.mixer.Sound('../audio/main.ogg') # carrega o som principal e o coloca em loop
@@ -37,9 +37,14 @@ class Game:
                         pg.quit()
                         sys.exit()
                     
-                if event.type == pg.MOUSEWHEEL: #ISSO DEVERIA FUNCIONAR, MAS NÃO FUNCIONA
-                    self.camera_group.zoom_scale += event.y * 0.03
-
+                if event.type == pg.MOUSEWHEEL: #ISSO DEVERIA FUNCIONAR, MAS NÃO FUNCIONA ### agora funciona tbm num quero comentar oq eu fiz nn, depois passo esse codigo pro camera.py 
+                    print(event.y)
+                    if (event.y > 0):
+                        game.level.camera_set(+0.01)
+                        print(game.level.camera_check())
+                    if (event.y < 0) and (game.camera_group.zoom_scale > 0.10):
+                        game.level.camera_set(-0.01) 
+                        print(game.level.camera_check())
             self.screen.fill(WATER_COLOR)
             self.level.run()
             pg.display.update()

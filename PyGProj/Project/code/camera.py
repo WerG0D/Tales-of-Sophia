@@ -5,7 +5,6 @@ class CameraGroup(pg.sprite.Group):
 
     def __init__(self):
         super().__init__()
-        
         #Offset:
         self.display_surface = pg.display.get_surface() #Pega o tamanho da tela, chamado lá no arquivo main e definido nas configurações
         
@@ -38,7 +37,11 @@ class CameraGroup(pg.sprite.Group):
         self.internal_offset.x = self.internal_surface_size[0] // 2 - self.half_width
         self.internal_offset.y = self.internal_surface_size[1] // 2 - self.half_height
         self.mouse_speed = 0.2
-        
+
+
+
+
+
     def center_target_camera(self, target):
         '''Essa é a camera que centraliza o player. Usamos a posição dele como offset, fazendo com que a camera sempre deixe o player no centro da tela. Essa opção por hora não tá sendo interessante pro que eu to pensando, mas não é um caso de YAGNI.'''
         
@@ -66,12 +69,15 @@ class CameraGroup(pg.sprite.Group):
         '''Aqui a gente faz a camera dar zoom usando o teclado. A gente vai usar o teclado para testar a camera, mas a ideia é que a gente use o mouse para dar zoom. Por algum motivo o pygame só deixa usar a roda do mouse lá no main loop... Então não dá pra implementar aqui nesse arquivo. Da uma olhada no arquivo main pra ver o input da camera com zoom'''
             
         keys = pg.key.get_pressed()
-        if keys[pg.K_KP_PLUS]:
-            if (self.zoom_scale < 2):
+        if keys [pg.K_KP_EQUALS]:
+            self.zoom_scale = 1
+        if keys[pg.K_KP_PLUS] and (self.zoom_scale < 2):
                 self.zoom_scale += 0.01
-        if keys[pg.K_KP_MINUS]:
-            if (self.zoom_scale > 0.10):
+        if keys[pg.K_KP_MINUS] and (self.zoom_scale > 0.10):
                 self.zoom_scale -= 0.01
+    
+
+    
     
     
     def mouse_control_v2(self, target):

@@ -41,7 +41,10 @@ class Level:
         '''Este método vai executar o level em si, e ao mesmo tempo vai dar update nele. Basicamente vai desenhar as coisas na tela. '''
         self.visible_sprites.custom_draw(self.player)
         self.visible_sprites.update()
-        
+    def camera_check(self):
+        return self.visible_sprites.zoom_scale
+    def camera_set(self, offset):
+        self.visible_sprites.zoom_scale += offset
 
             
             
