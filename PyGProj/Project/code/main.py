@@ -39,9 +39,9 @@ class Game:
                 if event.type == pg.MOUSEWHEEL: #ISSO DEVERIA FUNCIONAR, MAS NÃO FUNCIONA ### agora funciona tbm num quero comentar oq eu fiz nn, depois passo esse codigo pro camera.py 
                     print(event.y)
                     if (event.y > 0) and (game.level.camera_check() < 2):
-                        game.level.camera_set(+0.01)
+                        game.level.camera_set(+0.05)
                     if (event.y < 0) and (game.level.camera_check() > 0.10):
-                        game.level.camera_set(-0.01) 
+                        game.level.camera_set(-0.05) 
             self.screen.fill(WATER_COLOR)
             self.level.run()
             pg.display.update()
