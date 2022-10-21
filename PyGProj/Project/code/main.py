@@ -16,7 +16,6 @@ class Game:
         pg.display.set_caption('Lorem Ipsum')
         self.clock = pg.time.Clock()
         pg.event.set_grab(True)
-
         self.level = Level()  # instancia o level
 
         # sound
