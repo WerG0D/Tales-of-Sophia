@@ -124,25 +124,15 @@ class CameraGroup(pg.sprite.Group):
         
         self.internal_surface.fill(WATER_COLOR) #Por algum motivo maluco se a gente não fizer isso, a camera fica com umas linhas pretas. Não sei o motivo, mas isso resolve.
         
-        #Criamos a Ysort aqui. Basicamente, dependendo da posição do player, os sprites vão ser desenhados em ordem diferente, para que os sprites mais próximos do player fiquem na frente dos sprites mais distantes. Usamos a função sorted pra isso, que vai ordenar os sprites de acordo com a posição do player. A função sorted recebe uma lista, e uma função que vai ser usada para ordenar a lista. A função que usamos é a lambda, que é uma função anônima, que recebe um sprite e retorna a posição do sprite em relação ao player. A função sorted vai ordenar os sprites de acordo com a posição do player, e a função lambda vai retornar a posição do sprite em relação ao player. A função sorted vai retornar uma lista ordenada, e a gente vai usar essa lista ordenada para desenhar os sprites na tela.
-        
-        #Caso esteja curioso sobre o que o blit faz, ele transforma uma imagem em outra. É basicamente o que vai atualizar tudo na tela. O primeiro argumento é a imagem que vai ser transformada, e o segundo é a posição que a imagem vai ser transformada. A posição é a posição do sprite menos o offset, que é a posição da camera. Então, a imagem vai ser transformada na posição do sprite menos a posição da camera, que é a posição do sprite na tela. Então, a imagem vai ser transformada na posição do sprite na tela.
-        
         for sprite in sorted (self.sprites(), key=lambda sprite: sprite.rect.centery): 
             offset_rect = sprite.rect.topleft - self.offset + self.internal_offset
             self.internal_surface.blit(sprite.image, offset_rect)
-        
-        
-        #Aqui trabalhamos com a escala do zoom, desenhando tudo em uma superficie menor e depois escalando ela pra ficar maior. A função scale recebe uma imagem e uma escala, e retorna a imagem escalada. A escala é uma tupla com a escala em X e Y. A escala em X e Y é a escala que a gente quer multiplicar a imagem. Então, se a gente quiser que a imagem fique 2 vezes maior, a escala vai ser (2,2). A função scale retorna a imagem escalada, e a gente usa ela pra desenhar a imagem na tela. No nosso caso, vamos transformar a superficie interna e seu vetor pelo zoom
         
         scaled_surface = pg.transform.scale(self.internal_surface, self.internal_surface_size_vector * self.zoom_scale)
         scaled_rect = scaled_surface.get_rect(center = (self.half_width, self.half_height))
             
         self.display_surface.blit(scaled_surface, scaled_rect)
         
-        
-
-
 '''Um pouco sobre cameras:
 
 Bom, basicamente, uma camera é nada mais nada menos que um retangulo invisivel na tela que vai definir o que é mostrado e o que não é mostrado. Por exemplo, se você tem um mapa de 1000x1000 pixels, e a camera é de 500x500 pixels, então só será mostrado 500x500 pixels do mapa. Se a camera estiver no canto superior esquerdo do mapa, então só será mostrado o canto superior esquerdo do mapa. Se a camera estiver no canto inferior direito do mapa, então só será mostrado o canto inferior direito do mapa. Se a camera estiver no meio do mapa, então só será mostrado o meio do mapa. E assim por diante. 

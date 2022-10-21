@@ -37,7 +37,7 @@ class Game:
                         pg.quit()
                         sys.exit()
                     
-                if event.type == pg.MOUSEWHEEL:
+                if event.type == pg.MOUSEWHEEL: #ISSO DEVERIA FUNCIONAR, MAS NÃO FUNCIONA
                     self.camera_group.zoom_scale += event.y * 0.03
 
             self.screen.fill(WATER_COLOR)
