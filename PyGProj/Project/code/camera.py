@@ -67,9 +67,11 @@ class CameraGroup(pg.sprite.Group):
             
         keys = pg.key.get_pressed()
         if keys[pg.K_KP_PLUS]:
-            self.zoom_scale += 0.1
+            if (self.zoom_scale < 2):
+                self.zoom_scale += 0.01
         if keys[pg.K_KP_MINUS]:
-            self.zoom_scale -= 0.1
+            if (self.zoom_scale > 0.10):
+                self.zoom_scale -= 0.01
     
     
     def mouse_control_v2(self, target):
