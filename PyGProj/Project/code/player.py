@@ -11,7 +11,7 @@ class Player(pg.sprite.Sprite):
  
         self.direction = pg.math.Vector2() # direção do player é um vetor 2D, ou seja, se move em X e Y. Mais tarde vamos multiplicar isso pela velocidade do player.
         
-        self.speed = 20 # velocidade do player
+        self.speed = 6 # velocidade do player
         
         self.obstacle_sprites = obstacle_sprites
         
