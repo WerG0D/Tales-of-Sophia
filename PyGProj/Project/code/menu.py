@@ -9,11 +9,9 @@ class Menu:
     surface = pg.display.set_mode((WIDTH, HEIGHT))
 
     def load_game():
-        # Do the job here !
         pass
 
     def start_game():
-            game.level.run()
         pass
 
     def options():
