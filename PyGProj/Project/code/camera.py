@@ -40,6 +40,9 @@ class CameraGroup(pg.sprite.Group):
         self.internal_offset.y = self.internal_surface_size[1] // 2 - self.half_height
         self.mouse_speed = 0.2
 
+        #Configs do chão:
+        self.ground_surf = pg.image.load('../graphs/tilemap/map.png').convert_alpha()
+        self.ground_rect = self.ground_surf.get_rect(topleft = (0,0))
 
 
 
@@ -143,15 +146,17 @@ class CameraGroup(pg.sprite.Group):
         
     def custom_draw(self, player):
         
-        self.center_target_camera(player) #Chama a função que vai centralizar a camera no player
-        #opcao de camera 1 self.box_target_camera(player) #Chama a função que vai usar a camera de caixa
-        #opcao de camera 2 self.mouse_control()   #Chama a função que vai criar a camera de mouse.
-        #opcao de camera 3 self.mouse_control()
+        #self.center_target_camera(player) #Chama a função que vai centralizar a camera no player
+        #self.box_target_camera(player) #Chama a função que vai usar a camera de caixa
+        self.mouse_control()   #Chama a função que vai criar a camera de mouse.
         self.zoom_keyboard()
         
         pg.draw.rect(self.display_surface, (255,0,0), self.camera_rect, 5) #debug camera rect. Cria um retangulo que mostra as dimensoes da camera
         
         self.internal_surface.fill(WATER_COLOR) #Por algum motivo maluco se a gente não fizer isso, a camera fica com umas linhas pretas. Não sei o motivo, mas isso resolve.
+        
+        ground_offset = self.ground_rect.topleft - self.offset + self.internal_offset
+        self.internal_surface.blit(self.ground_surf, ground_offset)
         
         for sprite in sorted (self.sprites(), key=lambda sprite: sprite.rect.centery): 
             offset_rect = sprite.rect.topleft - self.offset + self.internal_offset
