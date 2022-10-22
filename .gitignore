@@ -21,3 +21,5 @@ Include
 Lib
 Scripts
 pyvenv.cfg
+PyGProj\Project\code\__pycache__
+PyGProj/Project/code/__pycache__/*
