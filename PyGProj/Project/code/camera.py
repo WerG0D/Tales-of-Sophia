@@ -39,6 +39,12 @@ class CameraGroup(pg.sprite.Group):
         self.internal_offset.x = self.internal_surface_size[0] // 2 - self.half_width
         self.internal_offset.y = self.internal_surface_size[1] // 2 - self.half_height
         self.mouse_speed = 0.2
+        
+        #Carregando o chão:
+        self.floor = pg.image.load('../map/Tiled/map.png').convert()
+        self.floor_rect = self.floor.get_rect(topleft = (0, 0))
+        
+        
 
 
 
@@ -151,7 +157,11 @@ class CameraGroup(pg.sprite.Group):
         
         pg.draw.rect(self.display_surface, (255,0,0), self.camera_rect, 5) #debug camera rect. Cria um retangulo que mostra as dimensoes da camera
         
-        self.internal_surface.fill(WATER_COLOR) #Por algum motivo maluco se a gente não fizer isso, a camera fica com umas linhas pretas. Não sei o motivo, mas isso resolve.
+        #self.internal_surface.fill(WATER_COLOR) #Por algum motivo maluco se a gente não fizer isso, a camera fica com umas linhas pretas. Não sei o motivo, mas isso resolve.
+        
+        #Desenhando o chão
+        floor_offset = self.floor_rect.topleft - self.offset
+        self.display_surface.blit(self.floor, floor_offset)
         
         for sprite in sorted (self.sprites(), key=lambda sprite: sprite.rect.centery): 
             offset_rect = sprite.rect.topleft - self.offset + self.internal_offset
