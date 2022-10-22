@@ -1,8 +1,7 @@
 import pygame as pg
 import sys
-from settings import *
+from settings import WIDTH, HEIGHT, FPS, WATER_COLOR
 from level import Level 
-from player import *
 import pygame_menu as pg_menu
 class Game:
     '''Classe que vai ser responsável por rodar o jogo, e por gerenciar o menu, o level, e tudo mais. A classe principal do game. '''   

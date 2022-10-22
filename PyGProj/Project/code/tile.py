@@ -1,5 +1,4 @@
 import pygame as pg
-from settings import *
 
 class Tile(pg.sprite.Sprite):
     '''Basicamente um tile é um sprite que vai ser usado para criar o mapa do jogo. Ele vai ser usado para criar os objetos do mapa, e para criar os obstáculos do jogo. Podem existir diversos tipos (grupos) de Tile, seja de obstáculos ou apenas o cenário. '''

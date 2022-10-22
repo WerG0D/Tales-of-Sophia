@@ -1,5 +1,5 @@
 import pygame as pg
-from settings import *
+from settings import WORLD_MAP , TILESIZE
 from tile import Tile
 from player import Player
 from camera import CameraGroup

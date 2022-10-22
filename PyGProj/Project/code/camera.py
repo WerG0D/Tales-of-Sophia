@@ -1,7 +1,7 @@
 ###################### ATENCAO, A CAMERA E INSTANCIADA APENAS NO ARQUIVO level.py usando o grupo visible_sprites, favor manipular ela apenas por esse grupo e nao instanciar ela masi nenhuma vez
 
 import pygame as pg
-from settings import *
+from settings import WATER_COLOR
 class CameraGroup(pg.sprite.Group):
     '''Esta classe é uma extensão da classe Group do pygame. Ela vai ser usada para fazer a camera funcionar. Basicamente ela vai ser um grupo de sprites, herdando todas as caracteristicas da classe Group, mas com algumas funções extras. A função custom_draw vai ser usada para desenhar os sprites na tela de uma maneira diferenciada, mudando a posição deles usando um vetor como base, e a função update vai ser usada para dar update nos sprites. '''
 
@@ -76,9 +76,7 @@ class CameraGroup(pg.sprite.Group):
             self.zoom_scale = 1
         if keys[pg.K_KP_PLUS] and (self.zoom_scale < 2): #mano tem q passar esses numeros pro settings.py
                 self.zoom_scale += 0.01
-                print(self.zoom_scale)
         if keys[pg.K_KP_MINUS] and (self.zoom_scale > 0.52):
-                print(self.zoom_scale)
                 self.zoom_scale -= 0.01
     
     def zoom_scroll(self, event):
