@@ -31,7 +31,7 @@ class CameraGroup(pg.sprite.Group):
         
         #Configs do Zoom:
         self.zoom_scale = 1
-        self.internal_surface_size = (2500, 2500)
+        self.internal_surface_size = (4094, 4094)
         self.internal_surface = pg.Surface(self.internal_surface_size, pg.SRCALPHA) #Disclaimer rapido, SRCALPHA faz as coisas que são transparentes não serem desenhadas. Tmj
         self.internal_rect = self.internal_surface.get_rect(center = (self.half_width, self.half_height))
         self.internal_surface_size_vector = pg.math.Vector2(self.internal_surface_size)
@@ -41,8 +41,7 @@ class CameraGroup(pg.sprite.Group):
         self.mouse_speed = 0.2
         
         #Carregando o chão:
-        self.floor = pg.image.load('../map/Tiled/map.png').convert()
-        self.floor_rect = self.floor.get_rect(topleft = (0, 0))
+        
         
         
 
@@ -149,19 +148,21 @@ class CameraGroup(pg.sprite.Group):
         
     def custom_draw(self, player):
         
+        #self.internal_surface.fill(WATER_COLOR)
+        
         self.center_target_camera(player) #Chama a função que vai centralizar a camera no player
         #opcao de camera 1 self.box_target_camera(player) #Chama a função que vai usar a camera de caixa
         #opcao de camera 2 self.mouse_control()   #Chama a função que vai criar a camera de mouse.
         #opcao de camera 3 self.mouse_control()
-        self.zoom_keyboard()
+        #self.zoom_keyboard()
         
         pg.draw.rect(self.display_surface, (255,0,0), self.camera_rect, 5) #debug camera rect. Cria um retangulo que mostra as dimensoes da camera
         
-        #self.internal_surface.fill(WATER_COLOR) #Por algum motivo maluco se a gente não fizer isso, a camera fica com umas linhas pretas. Não sei o motivo, mas isso resolve.
+         #Por algum motivo maluco se a gente não fizer isso, a camera fica com umas linhas pretas. Não sei o motivo, mas isso resolve.
         
         #Desenhando o chão
-        floor_offset = self.floor_rect.topleft - self.offset
-        self.display_surface.blit(self.floor, floor_offset)
+        #floor_offset = self.floor_rect.topleft - self.offset + self.internal_offset
+        #self.internal_surface.blit(self.floor, floor_offset)
         
         for sprite in sorted (self.sprites(), key=lambda sprite: sprite.rect.centery): 
             offset_rect = sprite.rect.topleft - self.offset + self.internal_offset
@@ -171,13 +172,3 @@ class CameraGroup(pg.sprite.Group):
         scaled_rect = scaled_surface.get_rect(center = (self.half_width, self.half_height))
             
         self.display_surface.blit(scaled_surface, scaled_rect)
-        
-'''Um pouco sobre cameras:
-
-Bom, basicamente, uma camera é nada mais nada menos que um retangulo invisivel na tela que vai definir o que é mostrado e o que não é mostrado. Por exemplo, se você tem um mapa de 1000x1000 pixels, e a camera é de 500x500 pixels, então só será mostrado 500x500 pixels do mapa. Se a camera estiver no canto superior esquerdo do mapa, então só será mostrado o canto superior esquerdo do mapa. Se a camera estiver no canto inferior direito do mapa, então só será mostrado o canto inferior direito do mapa. Se a camera estiver no meio do mapa, então só será mostrado o meio do mapa. E assim por diante. 
-
-Entretanto, a camera aqui no Pygame não é um retangulo invisivel, mas sim um retangulo que é mostrado na tela. Isso é feito para facilitar o debug, mas também pode ser usado para fazer um efeito de camera de box, que é o que eu fiz aqui.
-
-As cameras precisam de dois parametros para funcionar: o tamanho da camera e o offset da camera. O tamanho da camera é o tamanho do retangulo que vai ser mostrado na tela. O offset da camera é a posição do retangulo na tela. Normalmente, o tamanho da camera é defindo como valores fixos, e o offset da camera é definido de acordo com a posição do jogador ou de outra coisa. A posição de uma camera é definida em nosso código no canto superior esquerdo (topleft) da tela, no qual as coordenadas são (0,0). Poém, adicionamos um offset que é baseado na posição do player, fazendo a camera centralizar nele e caminhar junto com ele. Se o player chega na borda da camera, o offset sofre um update e acompanha o player.
-
-Temos também o Ysort, que é basicamente um meio de organizar os sprites na tela. O Ysort é usado para organizar os sprites na tela de acordo com a posição deles no eixo Y. Isso é feito para que os sprites mais próximos do jogador sejam mostrados na frente dos sprites mais distantes do jogador. Isso é feito usando a função sorted, que ordena os sprites de acordo com a posição deles no eixo Y. O sprite mais próximo do jogador vai ser o primeiro da lista, e o sprite mais distante do jogador vai ser o último da lista. Então, ao desenhar os sprites na tela, eles são desenhados na ordem da lista, ou seja, do sprite mais próximo do jogador até o sprite mais distante do jogador. Isso faz com que os sprites mais próximos do jogador sejam mostrados na frente dos sprites mais distantes do jogador'''

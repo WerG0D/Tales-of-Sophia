@@ -19,6 +19,8 @@ class Level:
 
         self.display_surface = pg.display.get_surface() # Getter do tamanho da tela: (é mais prático criar isto aqui para deixar a possibilidade de mudar o tamanho da tela no futuro pelo menu do game.)
 
+        self.floor = pg.image.load('../map/Tiled/map.png').convert()
+        self.floor_rect = self.floor.get_rect(topleft = (0, 0))
         
         #Sprite Setup:
         self.create_map()
@@ -31,8 +33,8 @@ class Level:
             for col_index, col in enumerate(row):
                 x = col_index * TILESIZE
                 y = row_index * TILESIZE
-                if col  == 'x':
-                    Tile((x,y),[self.visible_sprites, self.obstacle_sprites])
+                #if col  == 'x':
+                    #dTile((x,y),[self.visible_sprites, self.obstacle_sprites])
                 if col == 'p':
                     self.player = Player((x,y), [self.visible_sprites], self.obstacle_sprites)
         
