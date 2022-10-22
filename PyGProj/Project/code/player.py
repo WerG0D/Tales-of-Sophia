@@ -8,7 +8,7 @@ class Player(pg.sprite.Sprite):
         self.image = pg.image.load('../graphs/test/player.png')
         self.rect = self.image.get_rect(topleft=pos)
         
-        self.hitbox = self.rect.inflate(-10, -30) #Aqui é criado uma hitbox para o player, que vai ser usada para verificar se o player colidiu com um obstáculo. O inflate é usado para criar um retangulo maior ou menor que o retangulo original. No caso, estamos criando um retangulo menor, para que a hitbox seja menor que o player.
+        self.hitbox = self.rect.inflate(HITBOX_OFFSET['playerY'], HITBOX_OFFSET['playerX']) #Aqui é criado uma hitbox para o player, que vai ser usada para verificar se o player colidiu com um obstáculo. O inflate é usado para criar um retangulo maior ou menor que o retangulo original. No caso, estamos criando um retangulo menor, para que a hitbox seja menor que o player.
         self.direction = pg.math.Vector2() # direção do player é um vetor 2D, ou seja, se move em X e Y. Mais tarde vamos multiplicar isso pela velocidade do player.
         
         self.speed = 20 # velocidade do player
