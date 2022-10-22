@@ -51,18 +51,9 @@ class Menu():
 
     def start_game():
         game.run()
-    def load_game():
-        pass
-    def options():
-        pass
-    def about():
-        pass
     
     menugame = pg_menu.Menu('Tales of Sophia', 1280, 720, theme=pg_menu.themes.THEME_DARK)
     menugame.add.button('Start Game', start_game)
-    menugame.add.button('Load Game', load_game)
-    menugame.add.button('Options', options)
-    menugame.add.button('About', about)
     menugame.add.button('Quit', pg_menu.events.EXIT)
     menugame.mainloop(surface)
 #
