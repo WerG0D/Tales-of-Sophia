@@ -50,7 +50,7 @@ class CameraGroup(pg.sprite.Group):
         self.offset.x = target.rect.centerx - self.half_width 
         self.offset.y = target.rect.centery - self.half_height
 
-        print(self.offset)
+        #print(self.offset) #debug pra ver o offset
 
     def box_target_camera(self, target):
         '''Aqui as coisas ficam um pouco complexas, mas basicamente o que acontece é que a camera vai seguir o player, mas só vai seguir ele se ele estiver fora da camera, ou seja, se ele estiver dentro da camera, a camera não vai se mover. Mentira, não é nem um pouco complexo é só eu fznd drama'''
@@ -74,16 +74,18 @@ class CameraGroup(pg.sprite.Group):
         keys = pg.key.get_pressed()
         if keys [pg.K_KP_EQUALS]:
             self.zoom_scale = 1
-        if keys[pg.K_KP_PLUS] and (self.zoom_scale < 2):
+        if keys[pg.K_KP_PLUS] and (self.zoom_scale < 2): #mano tem q passar esses numeros pro settings.py
                 self.zoom_scale += 0.01
-        if keys[pg.K_KP_MINUS] and (self.zoom_scale > 0.10):
+                print(self.zoom_scale)
+        if keys[pg.K_KP_MINUS] and (self.zoom_scale > 0.52):
+                print(self.zoom_scale)
                 self.zoom_scale -= 0.01
     
     def zoom_scroll(self, event):
                 if event.type == pg.MOUSEWHEEL: 
                     if (event.y > 0) and (self.zoom_scale < 2):
                         self.zoom_scale += 0.05
-                    if (event.y < 0) and (self.zoom_scale > 0.10):
+                    if (event.y < 0) and (self.zoom_scale > 0.52):
                         self.zoom_scale -= 0.05
 
     
@@ -144,12 +146,12 @@ class CameraGroup(pg.sprite.Group):
         
     def custom_draw(self, player):
         
-        # self.center_target_camera(player) #Chama a função que vai centralizar a camera no player
+        #self.center_target_camera(player) #Chama a função que vai centralizar a camera no player
         
-        # self.box_target_camera(player) #Chama a função que vai usar a camera de caixa
+        self.box_target_camera(player) #Chama a função que vai usar a camera de caixa
         
         # self.mouse_control() #Chama a função que vai criar a camera de mouse.
-        self.mouse_control_v2(player)
+        #self.mouse_control()
         self.zoom_keyboard()
         
         pg.draw.rect(self.display_surface, (255,0,0), self.camera_rect, 5) #debug camera rect. Cria um retangulo que mostra as dimensoes da camera

@@ -5,7 +5,6 @@ import sys
 from settings import *
 from level import Level 
 from player import *
-from menu import *
 import pygame_menu as pg_menu
 class Game:
     '''Classe que vai ser responsável por rodar o jogo, e por gerenciar o menu, o level, e tudo mais. A classe principal do game. '''   
@@ -64,8 +63,8 @@ if __name__ == '__main__':
         def about():
             pass
 
-        menu = pg_menu.Menu('TalesZ of Sophia', 1280, 720,
-                            theme=pg_menu.themes.THEME_DARK)
+        menu = pg_menu.Menu('Tales of Sophia', 1280, 720,
+        theme=pg_menu.themes.THEME_DARK)
         menu.add.button('Start Game', start_game)
         menu.add.button('Load Game', load_game)
         menu.add.button('Options', options)
