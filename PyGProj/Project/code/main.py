@@ -56,8 +56,8 @@ class Menu():
     def options():
         pass
     def about():
-        
         pass
+    
     menugame = pg_menu.Menu('Tales of Sophia', 1280, 720, theme=pg_menu.themes.THEME_DARK)
     menugame.add.button('Start Game', start_game)
     menugame.add.button('Load Game', load_game)
