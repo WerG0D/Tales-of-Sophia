@@ -22,15 +22,19 @@ class Player(pg.sprite.Sprite):
         
         if keys [pg.K_w]:
             self.direction.y = -1
+            self.image = pg.image.load('../graphs/player/up/up_0.png')
         elif keys [pg.K_s]:
             self.direction.y = 1
+            self.image = pg.image.load('../graphs/player/down/down_0.png')
         else:
             self.direction.y = 0
             
         if keys [pg.K_d]:
             self.direction.x = 1
+            self.image = pg.image.load('../graphs/player/right/right_0.png')
         elif keys [pg.K_a]:
             self.direction.x = -1
+            self.image = pg.image.load('../graphs/player/left/left_0.png')
         else:
             self.direction.x = 0
     
