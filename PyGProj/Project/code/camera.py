@@ -134,7 +134,6 @@ class CameraGroup(pg.sprite.Group):
             if mouse.x > right_border:
                 mouse_offset_vector = mouse - pg.math.Vector2(right_border, bottom_border)
                 pg.mouse.set_pos((right_border, bottom_border))
-       
         if left_border < mouse.x < right_border:
             if mouse.y < top_border:
                 mouse_offset_vector.y = mouse.y - top_border
@@ -150,7 +149,7 @@ class CameraGroup(pg.sprite.Group):
         
         #self.box_target_camera(player) #Chama a função que vai usar a camera de caixa
         
-        # self.mouse_control() #Chama a função que vai criar a camera de mouse.
+        #self.mouse_control() #Chama a função que vai criar a camera de mouse.
         #self.mouse_control()
         self.zoom_keyboard()
         
