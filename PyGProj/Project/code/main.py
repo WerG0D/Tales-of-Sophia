@@ -1,4 +1,3 @@
-import imp
 import pygame as pg
 import os
 import sys
