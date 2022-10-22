@@ -21,7 +21,7 @@ class Game:
         main_sound.set_volume(0.5)
         main_sound.play(loops=-1)        
     def run(self):
-        '''Este método vai executar o game em si, e ao mesmo tempo vai dar update nele. Um loop infinito que vai carregar constantemente o level, o player e outras entidades. '''
+        '''Este método vai executar o game em si, e ao mesmo tempo vai dar update nele. Um loop infinito que vai carregar constantemente o level, o player e outras entidades. ''' 
         while True:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
