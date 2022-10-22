@@ -28,8 +28,7 @@ class Game:
                 if event.type == pg.QUIT:
                     pg.quit()
                     sys.exit()
-                if event.type == pg.KEYDOWN:
-                    if event.key == pg.K_ESCAPE:
+                if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
                         pg.quit()
                         sys.exit()
                 game.level.visible_sprites.zoom_scroll(event) ## cara, essa parte do codigo busca a instasncia da camera e executa a funcao de zoom no scroll do mouse
@@ -55,17 +54,16 @@ class Menu():
         pass
     def start_game():
         game.run()
-        pass
     def options():
         pass
     def about():
         pass
-    menu = pg_menu.Menu('Tales of Sophia', 1280, 720,
+    menugame = pg_menu.Menu('Tales of Sophia', 1280, 720,
     theme=pg_menu.themes.THEME_DARK)
-    menu.add.button('Start Game', start_game)
-    menu.add.button('Load Game', load_game)
-    menu.add.button('Options', options)
-    menu.add.button('About', about)
-    menu.add.button('Quit', pg_menu.events.EXIT)
-    menu.mainloop(surface)
+    menugame.add.button('Start Game', start_game)
+    menugame.add.button('Load Game', load_game)
+    menugame.add.button('Options', options)
+    menugame.add.button('About', about)
+    menugame.add.button('Quit', pg_menu.events.EXIT)
+    menugame.mainloop(surface)
 #
