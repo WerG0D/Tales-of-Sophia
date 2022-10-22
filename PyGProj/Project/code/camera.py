@@ -148,7 +148,7 @@ class CameraGroup(pg.sprite.Group):
         
         self.center_target_camera(player) #Chama a função que vai centralizar a camera no player
         #self.box_target_camera(player) #Chama a função que vai usar a camera de caixa
-        self.mouse_control()   #Chama a função que vai criar a camera de mouse.
+        #self.mouse_control()   #Chama a função que vai criar a camera de mouse.
         self.zoom_keyboard()
         
         pg.draw.rect(self.display_surface, (255,0,0), self.camera_rect, 5) #debug camera rect. Cria um retangulo que mostra as dimensoes da camera
