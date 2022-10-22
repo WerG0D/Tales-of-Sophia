@@ -146,9 +146,9 @@ class CameraGroup(pg.sprite.Group):
         
     def custom_draw(self, player):
         
-        #self.center_target_camera(player) #Chama a função que vai centralizar a camera no player
+        self.center_target_camera(player) #Chama a função que vai centralizar a camera no player
         
-        self.box_target_camera(player) #Chama a função que vai usar a camera de caixa
+        #self.box_target_camera(player) #Chama a função que vai usar a camera de caixa
         
         # self.mouse_control() #Chama a função que vai criar a camera de mouse.
         #self.mouse_control()

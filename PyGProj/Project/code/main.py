@@ -1,6 +1,4 @@
-import imp
 import pygame as pg
-import os
 import sys
 from settings import *
 from level import Level 
