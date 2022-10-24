@@ -3,6 +3,7 @@ from settings import WORLD_MAP , TILESIZE
 from tile import Tile
 from player import Player
 from camera import CameraGroup
+from debug import *
 
 class Level:
     '''Essa classe basicamente é o coração do jogo. O level é uma espécie de conteiner que vai conter todos os objetos/sprites do jogo, Sejam eles visiveis ou não. O funcionamento divide os sprites em duas classes, sprites visiveis e sprites de obstáculo, cada um com suas propriedades. Um obstáculo pode ter os dois grupos ao mesmo tempo, como por exemplo uma árvore com hitbox, que vai ter colisão e vai ser desenhada na tela. '''
@@ -41,3 +42,4 @@ class Level:
         '''Este método vai executar o level em si, e ao mesmo tempo vai dar update nele. Basicamente vai desenhar as coisas na tela. '''
         self.visible_sprites.custom_draw(self.player)
         self.visible_sprites.update()
+        debug(self.player.hitbox)
