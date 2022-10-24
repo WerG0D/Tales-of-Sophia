@@ -99,11 +99,17 @@ class CameraGroup(pg.sprite.Group):
         keydebug('Y2:', self.offset.y + PlayerY_Offset + self.half_height)
         if keys[pg.K_RIGHT]: ##detectando a tecla pressionada pra mover a camera lesgo
             # ok,nota para quem for mexer na camera no futuro, para achar a psoicao da camera real, em relacao ao player, tem q dividir pela metade de altura e largura, pq sim, como foi feito aqui
-            for i in range (0, 1000):
-                self.offset.x = self.offset.x + i/100
-                print('X:', self.offset.x)
-                self.offset.y = self.offset.y + i/100
-                print('Y:', self.offset.y)
+            self.offset.x = self.offset.x + 1
+            print('X:', self.offset.x)
+        if keys[pg.K_LEFT]:
+            self.offset.x = self.offset.x - 1
+            print('X:', self.offset.x)
+        if keys[pg.K_UP]:
+            self.offset.y = self.offset.y - 1
+            print('Y:', self.offset.y)
+        if keys[pg.K_DOWN]:
+            self.offset.y = self.offset.y + 1
+            print('Y:', self.offset.y)
 
     def lockunlock(self):
         keys = pg.key.get_pressed()
