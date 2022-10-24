@@ -4,9 +4,8 @@ from settings import WATER_COLOR
 from debug import keydebug
 
 PlayerX_Offset = -27 #tomar cuidado com essa maluquice aqui pq tenho quase ctz q vai quebrar assim q o jogo mudar de resolucao
-PlayerY_Offset = -17
-Offset_malucoX = 613 #Deus tenha piedade de mim
-Offset_malucoY = 343
+PlayerY_Offset = -17 #Deus tenha piedade de mim
+
 
 class CameraGroup(pg.sprite.Group):
     '''Esta classe é uma extensão da classe Group do pygame. Ela vai ser usada para fazer a camera funcionar. Basicamente ela vai ser um grupo de sprites, herdando todas as caracteristicas da classe Group, mas com algumas funções extras. A função custom_draw vai ser usada para desenhar os sprites na tela de uma maneira diferenciada, mudando a posição deles usando um vetor como base, e a função update vai ser usada para dar update nos sprites. '''
@@ -50,12 +49,15 @@ class CameraGroup(pg.sprite.Group):
         self.ground_surf = pg.image.load('../graphs/tilemap/map.png').convert_alpha()
         self.ground_rect = self.ground_surf.get_rect(topleft = (0,0))
 
+        #define se a camera esta lockada no player
+        self.islocked = True
 
 
 
     def center_target_camera(self, target):
-        self.offset.x = target.rect.centerx - self.half_width 
-        self.offset.y = target.rect.centery - self.half_height
+        if self.islocked == True:
+            self.offset.x = target.rect.centerx - self.half_width 
+            self.offset.y = target.rect.centery - self.half_height
         
         
 
@@ -92,19 +94,33 @@ class CameraGroup(pg.sprite.Group):
         camposX = self.offset.x + PlayerX_Offset + self.half_width
         camposY = self.offset.y + PlayerY_Offset + self.half_height
         keydebug('X:', camposX)     
-        keydebug('X2:', self.offset.x + Offset_malucoX)
+        keydebug('X2:', self.offset.x + PlayerX_Offset + self.half_width)
         keydebug('Y:', camposY)
-        keydebug('Y2:', self.offset.y + Offset_malucoY)
+        keydebug('Y2:', self.offset.y + PlayerY_Offset + self.half_height)
         if keys[pg.K_RIGHT]: ##detectando a tecla pressionada pra mover a camera lesgo
-            self.offset.x = self.offset.x - PlayerX_Offset - self.half_width #ok,nota para quem for mexer na camera no futuro, para achar a psoicao da camera real, em relacao ao player, tem q dividir pela metade de altura e largura, pq sim, como foi feito aqui
-            keydebug('aaa:', self.offset.x)
-            self.offset.y = self.offset.y - PlayerY_Offset - self.half_height
-            keydebug('bbb:', self.offset.x)
+            # ok,nota para quem for mexer na camera no futuro, para achar a psoicao da camera real, em relacao ao player, tem q dividir pela metade de altura e largura, pq sim, como foi feito aqui
+            for i in range (0, 1000):
+                self.offset.x = self.offset.x + i/100
+                print('X:', self.offset.x)
+                self.offset.y = self.offset.y + i/100
+                print('Y:', self.offset.y)
+
+    def lockunlock(self):
+        keys = pg.key.get_pressed()
+        if self.islocked == True and keys[pg.K_LSHIFT]:
+            self.islocked = False
+            print("unlocked")
+        if self.islocked == False and keys[pg.K_LCTRL]:
+                self.islocked = True
+                print("locked")
+            
+
 
     
     
     def custom_draw(self, player):
-    
+        self.lockunlock() ##para debug apenas
+        self.camtp()
         self.center_target_camera(player) #Chama a função que vai centralizar a camera no player
         self.zoom_keyboard()
         self.camtp()

@@ -1,4 +1,4 @@
-#comemoracao de 100 commits :)
+
 import pygame as pg
 import sys
 from settings import WIDTH, HEIGHT, FPS, WATER_COLOR
