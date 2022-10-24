@@ -1,6 +1,4 @@
 ###################### ATENCAO, A CAMERA E INSTANCIADA APENAS NO ARQUIVO level.py usando o grupo visible_sprites, favor manipular ela apenas por esse grupo e nao instanciar ela masi nenhuma vez
-
-from tkinter import Y
 import pygame as pg
 from settings import WATER_COLOR
 from debug import keydebug
