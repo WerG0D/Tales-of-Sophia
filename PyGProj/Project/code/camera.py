@@ -1,6 +1,4 @@
 ###################### ATENCAO, A CAMERA E INSTANCIADA APENAS NO ARQUIVO level.py usando o grupo visible_sprites, favor manipular ela apenas por esse grupo e nao instanciar ela masi nenhuma vez
-
-from tkinter import Y
 import pygame as pg
 from settings import WATER_COLOR
 from debug import keydebug
@@ -8,7 +6,7 @@ from debug import keydebug
 PlayerX_Offset = -27 #tomar cuidado com essa maluquice aqui pq tenho quase ctz q vai quebrar assim q o jogo mudar de resolucao
 PlayerY_Offset = -17
 Offset_malucoX = 613 #Deus tenha piedade de mim
-Offset_malucoY = 613
+Offset_malucoY = 343
 
 class CameraGroup(pg.sprite.Group):
     '''Esta classe é uma extensão da classe Group do pygame. Ela vai ser usada para fazer a camera funcionar. Basicamente ela vai ser um grupo de sprites, herdando todas as caracteristicas da classe Group, mas com algumas funções extras. A função custom_draw vai ser usada para desenhar os sprites na tela de uma maneira diferenciada, mudando a posição deles usando um vetor como base, e a função update vai ser usada para dar update nos sprites. '''
@@ -96,7 +94,7 @@ class CameraGroup(pg.sprite.Group):
         keydebug('X:', camposX)     
         keydebug('X2:', self.offset.x + Offset_malucoX)
         keydebug('Y:', camposY)
-        keydebug('Y2:', self.offset.x + Offset_malucoY)
+        keydebug('Y2:', self.offset.y + Offset_malucoY)
         if keys[pg.K_RIGHT]: ##detectando a tecla pressionada pra mover a camera lesgo
             self.offset.x = self.offset.x - PlayerX_Offset - self.half_width #ok,nota para quem for mexer na camera no futuro, para achar a psoicao da camera real, em relacao ao player, tem q dividir pela metade de altura e largura, pq sim, como foi feito aqui
             keydebug('aaa:', self.offset.x)
