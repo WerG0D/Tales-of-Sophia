@@ -1,7 +1,15 @@
 ###################### ATENCAO, A CAMERA E INSTANCIADA APENAS NO ARQUIVO level.py usando o grupo visible_sprites, favor manipular ela apenas por esse grupo e nao instanciar ela masi nenhuma vez
 
+from tkinter import Y
 import pygame as pg
 from settings import WATER_COLOR
+from debug import keydebug
+
+PlayerX_Offset = -27 #tomar cuidado com essa maluquice aqui pq tenho quase ctz q vai quebrar assim q o jogo mudar de resolucao
+PlayerY_Offset = -17
+Offset_malucoX = 613 #Deus tenha piedade de mim
+Offset_malucoY = 613
+
 class CameraGroup(pg.sprite.Group):
     '''Esta classe é uma extensão da classe Group do pygame. Ela vai ser usada para fazer a camera funcionar. Basicamente ela vai ser um grupo de sprites, herdando todas as caracteristicas da classe Group, mas com algumas funções extras. A função custom_draw vai ser usada para desenhar os sprites na tela de uma maneira diferenciada, mudando a posição deles usando um vetor como base, e a função update vai ser usada para dar update nos sprites. '''
 
@@ -51,6 +59,12 @@ class CameraGroup(pg.sprite.Group):
         self.offset.x = target.rect.centerx - self.half_width 
         self.offset.y = target.rect.centery - self.half_height
         
+        
+
+        
+        
+        
+        
     def zoom_keyboard(self):
         '''Aqui a gente faz a camera dar zoom usando o teclado. A gente vai usar o teclado para testar a camera, mas a ideia é que a gente use o mouse para dar zoom. Por algum motivo o pygame só deixa usar a roda do mouse lá no main loop... Então não dá pra implementar aqui nesse arquivo. Da uma olhada no arquivo main pra ver o input da camera com zoom'''
             
@@ -69,11 +83,33 @@ class CameraGroup(pg.sprite.Group):
                     if (event.y < 0) and (self.zoom_scale > 0.52):
                         self.zoom_scale -= 0.05
         
-    def custom_draw(self, player):
         
+        
+        
+    # #aqui comeca meu sofrimento tentando criar uma camera independente do player, vou documentar cuidadosamente pra ver se eu consigo entender o que eu fiz
+
+    def camtp(self):
+        keys = pg.key.get_pressed()
+        # usando o offset pq a camera usa o topo do sprite do player como centro da posicao e balbalbla
+        camposX = self.offset.x + PlayerX_Offset + self.half_width
+        camposY = self.offset.y + PlayerY_Offset + self.half_height
+        keydebug('X:', camposX)     
+        keydebug('X2:', self.offset.x + Offset_malucoX)
+        keydebug('Y:', camposY)
+        keydebug('Y2:', self.offset.x + Offset_malucoY)
+        if keys[pg.K_RIGHT]: ##detectando a tecla pressionada pra mover a camera lesgo
+            self.offset.x = self.offset.x - PlayerX_Offset - self.half_width #ok,nota para quem for mexer na camera no futuro, para achar a psoicao da camera real, em relacao ao player, tem q dividir pela metade de altura e largura, pq sim, como foi feito aqui
+            keydebug('aaa:', self.offset.x)
+            self.offset.y = self.offset.y - PlayerY_Offset - self.half_height
+            keydebug('bbb:', self.offset.x)
+
+    
+    
+    def custom_draw(self, player):
+    
         self.center_target_camera(player) #Chama a função que vai centralizar a camera no player
         self.zoom_keyboard()
-        
+        self.camtp()
         pg.draw.rect(self.display_surface, (255,0,0), self.camera_rect, 5) #debug camera rect. Cria um retangulo que mostra as dimensoes da camera
         
         self.internal_surface.fill(WATER_COLOR) #Por algum motivo maluco se a gente não fizer isso, a camera fica com umas linhas pretas. Não sei o motivo, mas isso resolve.
@@ -89,4 +125,7 @@ class CameraGroup(pg.sprite.Group):
         scaled_rect = scaled_surface.get_rect(center = (self.half_width, self.half_height))
             
         self.display_surface.blit(scaled_surface, scaled_rect)
+        
+        
+        
         

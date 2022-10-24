@@ -65,6 +65,16 @@ class Player(pg.sprite.Sprite):
                         self.hitbox.bottom = sprite.hitbox.top
                     if self.direction.y < 0: 
                         self.hitbox.top = sprite.hitbox.bottom
+    def playertp(self):
+        keys = pg.key.get_pressed()
+        if keys[pg.K_F2]:
+            print('tp')
+            X = int(input('X:'))
+            Y = int(input('Y:'))
+            self.hitbox.x = X
+            self.hitbox.y = Y
+            
     def update(self):
         self.input()
         self.move(self.speed)
+        self.playertp()

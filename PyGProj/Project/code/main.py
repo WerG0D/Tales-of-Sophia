@@ -3,6 +3,10 @@ import sys
 from settings import WIDTH, HEIGHT, FPS, WATER_COLOR
 from level import Level 
 import pygame_menu as pg_menu
+
+
+
+
 class Game:
     '''Classe que vai ser responsável por rodar o jogo, e por gerenciar o menu, o level, e tudo mais. A classe principal do game. '''   
     
@@ -11,7 +15,7 @@ class Game:
         # general setup
         pg.init()
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
-        pg.display.set_caption('Lorem Ipsum')
+        pg.display.set_caption('Tales of sophia')
         self.clock = pg.time.Clock()
         pg.event.set_grab(True)
         self.level = Level()  # instancia o level
