@@ -10,7 +10,7 @@ def import_csv(path):
             terrain_map.append(list(row))
     return terrain_map
 
-
+pg.init()
 def import_folder(path): #importador de arquivos de sprite pogg
     surface_list= []
     for _,__,img_files in walk(path):
@@ -19,3 +19,4 @@ def import_folder(path): #importador de arquivos de sprite pogg
             image_surf = pg.image.load(fullpath).convert_alpha()
             surface_list.append(image_surf)
     return surface_list
+

@@ -37,7 +37,7 @@ class Level:
             'player': import_csv('../map/testmapwow_player.csv'),
         }
         graphics = {
-            'objects': import_folder('../graphics/objects'),
+            'objects': import_folder('../graphs/objects'),
         }
         for style,layout in layouts.items():
             for row_index, row in enumerate(layout):
@@ -46,13 +46,17 @@ class Level:
                         x = col_index * TILESIZE
                         y = row_index * TILESIZE
                         if style == 'invis': #leia o comentario de baixo, e meio autoexplicativo
-                            Tile((x,y),[self.visible_sprites, self.obstacle_sprites], 'invis') #cria um tile invisivel, que vai ser usado como obstaculo
+                            Tile((x,y),[self.obstacle_sprites], 'invis') #cria um tile invisivel, que vai ser usado como obstaculo
                         if style == 'terrain':
                             pass
                         if style == 'ground':
                             pass
                         if style == 'objects':
-                            pass
+                            # surf = graphics['objects'][int(col)]
+                            surf = graphics['objects'][0]
+                            print("ATENCAO GABRIEL DO FUTURO, AQUI VAI SER CRIADO O SPRITE DO OBJETO, AGORA VOCE TA USANDO SO UM 0 ALI EM CIMA ENTrE CAIXAS PQ SO TE 1 UNICO SPRITE, SE ADICIONAR OUTROs vai ferrar o codigo, FAVOR MEXER AQUI NO FUTURO")
+                            Tile((x, y), [self.visible_sprites,self.obstacle_sprites], 'object', surf)
+
                         if style == 'player':
                             pass
         self.player = Player((500, 500), [self.visible_sprites], self.obstacle_sprites) # Cria o player no mapa, 500 500 e a posicao x e y dele, basico

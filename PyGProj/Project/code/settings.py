@@ -96,7 +96,7 @@ CONTROLKEYS = {
     'camera_down': pg.K_DOWN,
     'camera_left': pg.K_LEFT,
     'camera_right': pg.K_RIGHT,
-    'camera_zoom_in': pg.K_KP_PLUS,
+    'camera_zoom_in': pg.K_PLUS,
     'camera_zoom_out': pg.K_MINUS,
     'camera_zoom_reset': pg.K_0,
     'camera_unlock': pg.K_u,
