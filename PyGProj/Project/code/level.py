@@ -27,7 +27,8 @@ class Level:
         terrain_layout = import_csv_layout(level_data['terrain']) # Importando o layout do terreno
         
         self.terrain_sprites = self.create_map(terrain_layout, 'terrain')
-        
+        self.obstacle_sprites = self.create_map(terrain_layout, 'obstacle')
+        self.player_sprites = self.create_map(terrain_layout, 'player')
     
         
 
@@ -42,7 +43,16 @@ class Level:
                     if type == 'terrain':
                         Tile((x,y),[self.visible_sprites, self.obstacle_sprites], (TILESIZE,TILESIZE))
                 if col == '0':
-                    self.player = Player((x,y), [self.visible_sprites], self.obstacle_sprites)
+                    x = col_index * TILESIZE
+                    y = row_index * TILESIZE
+                    if type == 'player':
+                        self.player = Player((x,y), [self.visible_sprites], self.obstacle_sprites)
+                if col == '0' or '1' or '2' or '3':
+                    x = col_index * TILESIZE
+                    y = row_index * TILESIZE
+                    if type == 'obstacle':
+                        Tile((x,y),[self.visible_sprites, self.obstacle_sprites], (TILESIZE,TILESIZE))
+                    
         
 
     def run(self):
