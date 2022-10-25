@@ -3,7 +3,6 @@ WIDTH = 1280
 HEIGHT = 720
 FPS = 60
 TILESIZE = 64
-VERTICAL_TILE_NUMBER = 64
 HITBOX_OFFSET = {
     'playerX': -30,
     'playerY': -10,
