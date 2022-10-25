@@ -1,7 +1,7 @@
 
 import pygame as pg
 import sys
-from settings import WIDTH, HEIGHT, FPS, WATER_COLOR
+from settings import WIDTH, HEIGHT, FPS, WATER_COLOR, CONTROLKEYS
 from level import Level 
 import pygame_menu as pg_menu
 
@@ -32,7 +32,7 @@ class Game:
                 if event.type == pg.QUIT:
                     pg.quit()
                     sys.exit()
-                if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
+                if event.type == pg.KEYDOWN and event.key == CONTROLKEYS['exit']:
                         pg.quit()
                         sys.exit()
                 game.level.visible_sprites.zoom_scroll(event) ## cara, essa parte do codigo busca a instasncia da camera e executa a funcao de zoom no scroll do mouse

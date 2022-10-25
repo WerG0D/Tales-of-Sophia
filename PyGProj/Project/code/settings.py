@@ -1,3 +1,4 @@
+import pygame as pg
 # game setup
 WIDTH = 1280
 HEIGHT = 720
@@ -80,3 +81,26 @@ WORLD_MAP = [
     ['x', 'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x',
         'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x', 'x'],
 ]
+
+#controls
+CONTROLKEYS = {
+    'exit': pg.K_ESCAPE,
+    'enter': pg.K_RETURN,
+    ## move
+    'up': pg.K_w,
+    'down': pg.K_s,
+    'left': pg.K_a,
+    'right': pg.K_d,
+    ##cam
+    'camera_up': pg.K_UP,
+    'camera_down': pg.K_DOWN,
+    'camera_left': pg.K_LEFT,
+    'camera_right': pg.K_RIGHT,
+    'camera_zoom_in': pg.K_KP_PLUS,
+    'camera_zoom_out': pg.K_MINUS,
+    'camera_zoom_reset': pg.K_0,
+    'camera_unlock': pg.K_u,
+    'camera_lock': pg.K_l,
+    'camera_speed_up': pg.K_i,
+    'camera_speed_down': pg.K_k,
+}

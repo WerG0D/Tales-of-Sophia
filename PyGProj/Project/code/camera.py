@@ -1,6 +1,6 @@
 ###################### ATENCAO, A CAMERA E INSTANCIADA APENAS NO ARQUIVO level.py usando o grupo visible_sprites, favor manipular ela apenas por esse grupo e nao instanciar ela masi nenhuma vez
 import pygame as pg
-from settings import WATER_COLOR
+from settings import WATER_COLOR, CONTROLKEYS
 from debug import keydebug
 
 PlayerX_Offset = -27 #tomar cuidado com essa maluquice aqui pq tenho quase ctz q vai quebrar assim q o jogo mudar de resolucao
@@ -51,29 +51,24 @@ class CameraGroup(pg.sprite.Group):
 
         #define se a camera esta lockada no player
         self.islocked = True
+        
+        # velocidade da camera né
+        self.camspeed = 1  
 
 
 
-    def center_target_camera(self, target):
+    def center_target_camera(self, target): #Aqui a gente vai fazer a camera seguir o player ou qqr target
         if self.islocked == True:
             self.offset.x = target.rect.centerx - self.half_width 
             self.offset.y = target.rect.centery - self.half_height
-        
-        
-
-        
-        
-        
-        
     def zoom_keyboard(self):
         '''Aqui a gente faz a camera dar zoom usando o teclado. A gente vai usar o teclado para testar a camera, mas a ideia é que a gente use o mouse para dar zoom. Por algum motivo o pygame só deixa usar a roda do mouse lá no main loop... Então não dá pra implementar aqui nesse arquivo. Da uma olhada no arquivo main pra ver o input da camera com zoom'''
-            
         keys = pg.key.get_pressed()
-        if keys [pg.K_KP_EQUALS]:
+        if keys [CONTROLKEYS['camera_zoom_reset']]:
             self.zoom_scale = 1
-        if keys[pg.K_KP_PLUS] and (self.zoom_scale < 2): #mano tem q passar esses numeros pro settings.py
+        if keys[CONTROLKEYS['camera_zoom_in']] and (self.zoom_scale < 2): #mano tem q passar esses numeros pro settings.py
                 self.zoom_scale += 0.01
-        if keys[pg.K_KP_MINUS] and (self.zoom_scale > 0.52):
+        if keys[CONTROLKEYS['camera_zoom_out']] and (self.zoom_scale > 0.52):
                 self.zoom_scale -= 0.01
     
     def zoom_scroll(self, event):
@@ -88,48 +83,46 @@ class CameraGroup(pg.sprite.Group):
         
     # #aqui comeca meu sofrimento tentando criar uma camera independente do player, vou documentar cuidadosamente pra ver se eu consigo entender o que eu fiz
 
-    def camtp(self):
+    def freecam(self):
+        keydebug('X:', self.offset.x + PlayerX_Offset + self.half_width)
+        keydebug('Y:', self.offset.y + PlayerY_Offset + self.half_height)
         keys = pg.key.get_pressed()
-        # usando o offset pq a camera usa o topo do sprite do player como centro da posicao e balbalbla
-        camposX = self.offset.x + PlayerX_Offset + self.half_width
-        camposY = self.offset.y + PlayerY_Offset + self.half_height
-        keydebug('X:', camposX)     
-        keydebug('X2:', self.offset.x + PlayerX_Offset + self.half_width)
-        keydebug('Y:', camposY)
-        keydebug('Y2:', self.offset.y + PlayerY_Offset + self.half_height)
-        if keys[pg.K_RIGHT]: ##detectando a tecla pressionada pra mover a camera lesgo
-            # ok,nota para quem for mexer na camera no futuro, para achar a psoicao da camera real, em relacao ao player, tem q dividir pela metade de altura e largura, pq sim, como foi feito aqui
-            self.offset.x = self.offset.x + 1
-            print('X:', self.offset.x)
-        if keys[pg.K_LEFT]:
-            self.offset.x = self.offset.x - 1
-            print('X:', self.offset.x)
-        if keys[pg.K_UP]:
-            self.offset.y = self.offset.y - 1
-            print('Y:', self.offset.y)
-        if keys[pg.K_DOWN]:
-            self.offset.y = self.offset.y + 1
-            print('Y:', self.offset.y)
+
+        if self.islocked == False:
+            if keys[CONTROLKEYS['camera_speed_up']] and self.camspeed < 10:
+                self.camspeed += 0.5
+            if keys[CONTROLKEYS['camera_speed_down']] and self.camspeed > 0.5:
+                self.camspeed -= 0.5
+            if keys[CONTROLKEYS['camera_right']]: ##detectando a tecla pressionada pra mover a camera lesgo
+                # ok,nota para quem for mexer na camera no futuro, para achar a psoicao da camera real, em relacao ao player, tem q dividir pela metade de altura e largura, pq sim, como foi feito aqui
+                self.offset.x = self.offset.x + self.camspeed
+                print('X:', self.offset.x)
+            if keys[CONTROLKEYS['camera_left']]:
+                self.offset.x = self.offset.x - self.camspeed
+                print('X:', self.offset.x)
+            if keys[CONTROLKEYS['camera_up']]:
+                self.offset.y = self.offset.y - self.camspeed
+                print('Y:', self.offset.y)
+            if keys[CONTROLKEYS['camera_down']]:
+                self.offset.y = self.offset.y + self.camspeed
+                print('Y:', self.offset.y)
 
     def lockunlock(self):
         keys = pg.key.get_pressed()
-        if self.islocked == True and keys[pg.K_LSHIFT]:
+        if self.islocked == True and keys[CONTROLKEYS['camera_unlock']]:
             self.islocked = False
-            print("unlocked")
-        if self.islocked == False and keys[pg.K_LCTRL]:
+        if self.islocked == False and keys[CONTROLKEYS['camera_lock']]:
                 self.islocked = True
-                print("locked")
-            
+
 
 
     
     
     def custom_draw(self, player):
         self.lockunlock() ##para debug apenas
-        self.camtp()
+        self.freecam()
         self.center_target_camera(player) #Chama a função que vai centralizar a camera no player
         self.zoom_keyboard()
-        self.camtp()
         pg.draw.rect(self.display_surface, (255,0,0), self.camera_rect, 5) #debug camera rect. Cria um retangulo que mostra as dimensoes da camera
         
         self.internal_surface.fill(WATER_COLOR) #Por algum motivo maluco se a gente não fizer isso, a camera fica com umas linhas pretas. Não sei o motivo, mas isso resolve.
