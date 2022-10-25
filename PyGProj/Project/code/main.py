@@ -1,9 +1,10 @@
 
 import pygame as pg
 import sys
+import pygame_menu as pg_menu
 from settings import WIDTH, HEIGHT, FPS, WATER_COLOR
 from level import Level 
-import pygame_menu as pg_menu
+from game_data import level_0
 
 
 
@@ -19,12 +20,13 @@ class Game:
         pg.display.set_caption('Tales of sophia')
         self.clock = pg.time.Clock()
         pg.event.set_grab(True)
-        self.level = Level()  # instancia o level
+        self.level = Level(level_data=level_0, surface=self.screen)  # instancia o level
 
         # sound
         main_sound = pg.mixer.Sound('../audio/main.ogg') # carrega o som principal e o coloca em loop
         main_sound.set_volume(0.5)
-        main_sound.play(loops=-1)        
+        main_sound.play(loops=-1)
+                
     def run(self):
         '''Este método vai executar o game em si, e ao mesmo tempo vai dar update nele. Um loop infinito que vai carregar constantemente o level, o player e outras entidades. ''' 
         while True:

@@ -7,9 +7,13 @@
     "expandedProjectPaths": [
     ],
     "fileStates": {
+        "player.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
     },
     "last.exportedFilePath": "C:/PyGProject/PyGProj/Project/map",
-    "last.imagePath": "C:/PyGProject/PyGProj/Project/graphs/objects",
+    "last.imagePath": "C:/PyGProject/PyGProj/Project/graphs/player/down_idle",
     "map.height": 64,
     "map.lastUsedExportFilter": "Arquivos CSV (*.csv)",
     "map.tileHeight": 64,
@@ -19,6 +23,7 @@
     ],
     "project": "example.tiled-project",
     "recentFiles": [
+        "player.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
