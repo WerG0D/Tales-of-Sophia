@@ -28,7 +28,7 @@ class Level:
         
         self.terrain_sprites = self.create_map(terrain_layout, 'terrain')
         self.obstacle_sprites = self.create_map(terrain_layout, 'obstacle')
-        self.player_sprites = self.create_map(terrain_layout, 'player')
+        self.player = self.create_map(terrain_layout, 'player')
     
         
 
