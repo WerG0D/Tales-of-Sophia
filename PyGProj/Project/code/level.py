@@ -58,8 +58,8 @@ class Level:
                             Tile((x, y), [self.visible_sprites,self.obstacle_sprites], 'object', surf)
 
                         if style == 'player':
-                            pass
-        self.player = Player((500, 500), [self.visible_sprites], self.obstacle_sprites) # Cria o player no mapa, 500 500 e a posicao x e y dele, basico
+                            self.player = Player((x,y), [self.visible_sprites], self.obstacle_sprites)
+         # Cria o player no mapa, 500 500 e a posicao x e y dele, basico
 
     def run(self):
         '''Este método vai executar o level em si, e ao mesmo tempo vai dar update nele. Basicamente vai desenhar as coisas na tela. '''
