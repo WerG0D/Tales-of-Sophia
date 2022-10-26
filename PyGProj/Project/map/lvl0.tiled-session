@@ -1,0 +1,123 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "tiled.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "": {
+            "scaleInDock": 1
+        },
+        "#objects": {
+            "scaleInEditor": 1
+        },
+        "Floor.tsx": {
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1
+        },
+        "TilesetFloor.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "TilesetFloorDetail.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "TilesetNature.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "boundary.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "details.tsx": {
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1
+        },
+        "grass.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "invis.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "objects.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "player.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "sem título.tmx": {
+            "scale": 0.33,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 1790.909090909091,
+                "y": 1518.181818181818
+            }
+        },
+        "sem título.tmx#objects": {
+            "scaleInDock": 1
+        },
+        "tiled.tmx": {
+            "scale": 0.2189453125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 2050.740410347904,
+                "y": 2050.740410347904
+            }
+        },
+        "tiled.tmx#objects": {
+            "scaleInDock": 1
+        }
+    },
+    "last.exportedFilePath": "D:/Desktop/projeto/csvs",
+    "last.externalTilesetPath": "D:/Desktop/projeto",
+    "last.imagePath": "C:/Users/gabri/Documents/GitHub/PyGProject/PyGProj/Project/graphs/test",
+    "map.height": 64,
+    "map.lastUsedExportFilter": "Arquivos CSV (*.csv)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 64,
+    "map.tileWidth": 64,
+    "map.width": 64,
+    "openFiles": [
+        "Floor.tsx",
+        "details.tsx",
+        "objects.tsx",
+        "player.tsx",
+        "invis.tsx",
+        "tiled.tmx"
+    ],
+    "project": "lvl0.tiled-project",
+    "recentFiles": [
+        "Floor.tsx",
+        "details.tsx",
+        "objects.tsx",
+        "player.tsx",
+        "invis.tsx",
+        "tiled.tmx",
+        "sem título.tmx",
+        "boundary.tsx",
+        "TilesetNature.tsx",
+        "TilesetFloorDetail.tsx",
+        "grass.tsx",
+        "TilesetFloor.tsx"
+    ],
+    "tileset.lastUsedFilter": "Arquivos de conjunto de blocos Tiled (*.tsx *.xml)",
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 64,
+        "width": 64
+    },
+    "tileset.type": 0,
+    "tileset.useTransparentColor": false
+}

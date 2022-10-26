@@ -29,13 +29,14 @@ class Level:
         
         #inicio dos dicionários csv
         layouts = {
-            'invis': import_csv('../map/testmapwow_terrain.csv'),
-            'terrain': import_csv('../map/testmapwow_terrain.csv'),
-            'objects': import_csv('../map/testmapwow_objects.csv'),
-            'player': import_csv('../map/testmapwow_player.csv'),
+            'invisible': import_csv('../map/csvs/_invis.csv'),
+            'objects': import_csv('../map/csvs/_objects.csv'),
+            'player': import_csv('../map/csvs/_player.csv'),
         }
         graphics = {
             'objects': import_folder('../graphs/objects'),
+            'invis': import_folder('../graphs/invis'),
+            'player': import_folder('../graphs/plaerdefault'),
         }
         
         
@@ -57,7 +58,7 @@ class Level:
                         
                         if style == 'objects':
                             
-                            surf = graphics['objects'][0] # surf = graphics['objects'][int(col)]
+                            surf = graphics['objects'][int(col)] # surf = graphics['objects'][int(col)]
                             
                             '''ATENCAO GABRIEL DO FUTURO, AQUI VAI SER CRIADO O SPRITE DO OBJETO, AGORA VOCE TA USANDO SO UM 0 ALI EM CIMA ENTrE CAIXAS PQ SO TE 1 UNICO SPRITE, SE ADICIONAR OUTROs vai ferrar o codigo, FAVOR MEXER AQUI NO FUTURO'''
                             
