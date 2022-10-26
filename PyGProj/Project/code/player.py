@@ -5,6 +5,7 @@ from settings import HITBOX_OFFSET, CONTROLKEYS
 class Player(pg.sprite.Sprite):
     def __init__(self, pos, groups, obstacle_sprites):
         super().__init__(groups)
+        
         self.image = pg.image.load('../graphs/test/player.png')
         
         self.rect = self.image.get_rect(topleft=pos)
@@ -90,5 +91,7 @@ class Player(pg.sprite.Sprite):
             
     def update(self):
         self.input()
+        
         self.move(self.speed)
+        
         self.playertp()
