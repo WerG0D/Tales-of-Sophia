@@ -1,5 +1,4 @@
 from csv import reader
-import graphlib
 from os import walk
 import pygame as pg
 def import_csv(path):

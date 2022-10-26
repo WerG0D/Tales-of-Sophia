@@ -1,4 +1,3 @@
-from cgi import test
 import pygame as pg
 from settings import TILESIZE
 from tile import Tile
@@ -28,6 +27,7 @@ class Level:
 
     def create_map(self):
         
+        #inicio dos dicionários csv
         layouts = {
             'invis': import_csv('../map/testmapwow_terrain.csv'),
             'terrain': import_csv('../map/testmapwow_terrain.csv'),
