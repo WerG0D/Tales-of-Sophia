@@ -54,7 +54,7 @@ class CameraGroup(pg.sprite.Group):
         self.mouse_speed = 0.2 #Velocidade do mouse
 
         #Configs do chão:
-        self.ground_surf = pg.image.load('../graphs/tilemap/map.png').convert_alpha()
+        self.ground_surf = pg.image.load('../graphs/map/placeholder.png').convert_alpha() ##carrega um placeholder so pra evitar de nao carregar nd e o jogo morrer
         self.ground_rect = self.ground_surf.get_rect(topleft = (0,0))
 
         #define se a camera esta lockada no player
@@ -63,6 +63,8 @@ class CameraGroup(pg.sprite.Group):
         # velocidade da camera né
         self.camspeed = 5  
 
+    def mapset(self, path):
+        self.ground_surf = pg.image.load(path).convert_alpha()
 
 
     def center_target_camera(self, target): 

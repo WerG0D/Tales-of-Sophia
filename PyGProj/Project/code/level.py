@@ -5,7 +5,6 @@ from player import Player
 from camera import CameraGroup
 from debug import debug
 from support import import_csv , import_folder
-
 class Level:
 
     def __init__(self):
@@ -19,6 +18,10 @@ class Level:
 
 
         self.display_surface = pg.display.get_surface() 
+        
+        
+        #tentando criar um metodo de carregar varios mapas
+        
 
         
         #Sprite Setup:
@@ -50,17 +53,9 @@ class Level:
                         if style == 'invis': #leia o comentario de baixo, e meio autoexplicativo
                             Tile((x,y),[self.obstacle_sprites], 'invis') #cria um tile invisivel, que vai ser usado como obstaculo
                         
-                        if style == 'terrain':
-                            pass
-                        
-                        if style == 'ground':
-                            pass
-                        
                         if style == 'objects':
                             
-                            surf = graphics['objects'][int(col)] # surf = graphics['objects'][int(col)]
-                            
-                            '''ATENCAO GABRIEL DO FUTURO, AQUI VAI SER CRIADO O SPRITE DO OBJETO, AGORA VOCE TA USANDO SO UM 0 ALI EM CIMA ENTrE CAIXAS PQ SO TE 1 UNICO SPRITE, SE ADICIONAR OUTROs vai ferrar o codigo, FAVOR MEXER AQUI NO FUTURO'''
+                            surf = graphics['objects'][int(col)]
                             
                             Tile((x, y), [self.visible_sprites,self.obstacle_sprites], 'object', surf)
 
@@ -68,6 +63,8 @@ class Level:
                             self.player = Player((x,y), [self.visible_sprites], self.obstacle_sprites)
 
     def run(self):
+        
+        self.visible_sprites.mapset('../map/map.png') # carrega o mapa real, essa funcao pode ser usada pra mudar ele, eu espero
         
         self.visible_sprites.custom_draw(self.player)
         
