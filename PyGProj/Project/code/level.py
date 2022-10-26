@@ -19,11 +19,10 @@ class Level:
 
         self.display_surface = pg.display.get_surface() 
         
-        
-        #tentando criar um metodo de carregar varios mapas
-        
+        #map
+        self.levelstarted = False
+        self.levelnow = 0
 
-        
         #Sprite Setup:
         self.create_map()
         
@@ -63,11 +62,17 @@ class Level:
                             self.player = Player((x,y), [self.visible_sprites], self.obstacle_sprites)
 
     def run(self):
-        
-        self.visible_sprites.mapset('../map/map.png') # carrega o mapa real, essa funcao pode ser usada pra mudar ele, eu espero
+        if self.levelstarted == False:
+            self.visible_sprites.mapset('../map/map.png') # carrega o mapa real, essa funcao pode ser usada pra mudar ele, eu espero
+            self.levelstarted = True
         
         self.visible_sprites.custom_draw(self.player)
         
         self.visible_sprites.update()
         
-        debug(self.player.hitbox)
+        
+        keys = pg.key.get_pressed() ## DEBUG PARA MJUDAR DE LEVEL, AINDA VOU TRABALHAR EM COMO MUDAR OS SPRITES @GabriWar
+        if keys[pg.K_F3]:
+            self.visible_sprites.mapset('../map/placeholder.png')
+        if keys[pg.K_F4]:
+            self.visible_sprites.mapset('../map/map.png')

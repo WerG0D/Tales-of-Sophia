@@ -64,6 +64,7 @@ class CameraGroup(pg.sprite.Group):
         # velocidade da camera né
         self.camspeed = 5  
 
+        #metodo para carregar varios mapas
     def mapset(self, path):
         self.ground_surf = pg.image.load(path).convert_alpha()
 
