@@ -215,7 +215,7 @@
 </data>
   </layer>
  </group>
- <group id="8" name="csv" visible="0">
+ <group id="8" name="csv">
   <layer id="4" name="player" width="64" height="64">
    <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
