@@ -2,7 +2,7 @@ import pygame as pg
 # game setup
 WIDTH = 1280
 HEIGHT = 720
-FPS = 60
+FPS = 120
 TILESIZE = 64
 HITBOX_OFFSET = {
     'playerX': -30,
@@ -50,8 +50,8 @@ CONTROLKEYS = {
     'camera_down': pg.K_DOWN,
     'camera_left': pg.K_LEFT,
     'camera_right': pg.K_RIGHT,
-    'camera_zoom_in': pg.K_PLUS,
-    'camera_zoom_out': pg.K_MINUS,
+    'camera_zoom_in': pg.K_KP_PLUS,
+    'camera_zoom_out': pg.K_KP_MINUS,
     'camera_zoom_reset': pg.K_0,
     'camera_unlock': pg.K_u,
     'camera_lock': pg.K_l,

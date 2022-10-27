@@ -84,8 +84,8 @@ class CameraGroup(pg.sprite.Group):
             self.zoom_scale = 1
             
         if keys[CONTROLKEYS['camera_zoom_in']] and (self.zoom_scale < 2):
-                self.zoom_scale += 0.01
-                
+            self.zoom_scale += 0.01
+            
         if keys[CONTROLKEYS['camera_zoom_out']] and (self.zoom_scale > 0.52):
                 self.zoom_scale -= 0.01
     

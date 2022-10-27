@@ -20,15 +20,7 @@ class Game:
         pg.event.set_grab(True)
         
         self.level = Level()  # instancia o level
-
-        # sound
-        main_sound = pg.mixer.Sound('../audio/main.ogg') # carrega o som principal e o coloca em loop
         
-        main_sound.set_volume(0.5)
-        
-        main_sound.play(loops=-1)
-        
-
 
     def run(self):
         
