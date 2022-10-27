@@ -12,14 +12,10 @@ class Level:
         # Grupo de sprites:
         
         self.visible_sprites = CameraGroup() # Grupo de sprites visíveis na tela, tudo que for visivel vai ter esse subgrupo. O subgrupo vai ser usado para fazer a camera funcionar.
-
-        
         self.obstacle_sprites = pg.sprite.Group() # Grupo de sprites que são obstáculos, ou seja, não podem ser atravessados e terão colisão com o player. Tudo que tiver essa proprieadade vai ter esse subgrupo.
-
-
         self.display_surface = pg.display.get_surface() 
         
-        #map
+        #logica do mapa
         self.levelstarted = False
         self.levelnow = 0
 

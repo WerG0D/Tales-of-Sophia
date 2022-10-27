@@ -5,27 +5,22 @@ from support import import_folder
 class Player(pg.sprite.Sprite):
     def __init__(self, pos, groups, obstacle_sprites):
         super().__init__(groups)
-        
-        self.image = pg.image.load('../graphs/playerdefault/0.png')
-        
+        #hitbox
         self.rect = self.image.get_rect(topleft=pos)
-        
         self.hitbox = self.rect.inflate(HITBOX_OFFSET['playerY'], HITBOX_OFFSET['playerX'])
         
-        self.direction = pg.math.Vector2() 
-        
-        self.speed = 20 # velocidade do player
-        
+        #atributos do player
+        self.speed = 10 
         self.attackspeed = 1
         
+        #logica
+        self.direction = pg.math.Vector2()
         self.attacktime= 0
-        
         self.attacking = False
         
+        #setup dos graficos
+        self.image = pg.image.load('../graphs/playerdefault/0.png')
         self.obstacle_sprites = obstacle_sprites
-        
-        self.isanimated = False
-        #importanto as animações
         self.import_player_assets()
         self.status = 'down'
         self.frame_index =0
@@ -68,9 +63,9 @@ class Player(pg.sprite.Sprite):
         else:
             self.direction.x = 0
         
-        #time for the attack animation
-        
-        if int(pg.time.get_ticks()) - self.attacktime >= (100/self.attackspeed):
+        #tempo pra animação de ataque
+                
+        if int(pg.time.get_ticks()) - self.attacktime >= (80/self.attackspeed): #muita logica envolvida pra levar em conta o attk speed, que deve ser um atributo do jogo final, mas vai valer a pena
             self.attacking = False
         if keys[CONTROLKEYS['attack']]:
             if int(pg.time.get_ticks()) - self.attacktime >= (1000/self.attackspeed):
@@ -161,6 +156,5 @@ class Player(pg.sprite.Sprite):
         self.input()
         self.get_status()
         self.animate()
-        print(self.status)
         self.move(self.speed)
         #self.playertp()
