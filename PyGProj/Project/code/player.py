@@ -6,7 +6,7 @@ class Player(pg.sprite.Sprite):
     def __init__(self, pos, groups, obstacle_sprites):
         super().__init__(groups)
         
-        self.image = pg.image.load('../graphs/playerdefault/curiousKitty_Idle00.png')
+        self.image = pg.image.load('../graphs/playerdefault/0.png')
         
         self.rect = self.image.get_rect(topleft=pos)
         
@@ -24,22 +24,22 @@ class Player(pg.sprite.Sprite):
         
         if keys[CONTROLKEYS['up']]:
             self.direction.y = -1
-            self.image = pg.image.load('../graphs/playerdefault/walking_sprites05.png')
+            self.image = pg.image.load('../graphs/player/up/up_0.png')
             
         elif keys[CONTROLKEYS['down']]:
             self.direction.y = 1
-            self.image = pg.image.load('../graphs/playerdefault/curiousKitty_Idle00.png')
+            self.image = pg.image.load('../graphs/player/down/down_0.png')
             
         else:
             self.direction.y = 0
             
         if keys[CONTROLKEYS['right']]:
             self.direction.x = 1
-            self.image = pg.image.load('../graphs/playerdefault/walking_sprites12.png')
+            self.image = pg.image.load('../graphs/player/right/right_0.png')
             
         elif keys[CONTROLKEYS['left']]:
             self.direction.x = -1
-            self.image = pg.image.load('../graphs/playerdefault/walking_sprites08.png')
+            self.image = pg.image.load('../graphs/player/left/left_0.png')
             
         else:
             self.direction.x = 0
