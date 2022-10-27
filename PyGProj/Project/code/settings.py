@@ -45,6 +45,10 @@ CONTROLKEYS = {
     'down': pg.K_s,
     'left': pg.K_a,
     'right': pg.K_d,
+    'attack': pg.K_k,
+    'magic': pg.K_l,
+    'interact': pg.K_RETURN,
+    'inventory': pg.K_e,
     ##cam
     'camera_up': pg.K_UP,
     'camera_down': pg.K_DOWN,
@@ -53,8 +57,8 @@ CONTROLKEYS = {
     'camera_zoom_in': pg.K_KP_PLUS,
     'camera_zoom_out': pg.K_KP_MINUS,
     'camera_zoom_reset': pg.K_0,
-    'camera_unlock': pg.K_u,
-    'camera_lock': pg.K_l,
-    'camera_speed_up': pg.K_i,
-    'camera_speed_down': pg.K_k,
+    'camera_unlock': pg.K_t,
+    'camera_lock': pg.K_g,
+    'camera_speed_up': pg.K_z,
+    'camera_speed_down': pg.K_x,
 }

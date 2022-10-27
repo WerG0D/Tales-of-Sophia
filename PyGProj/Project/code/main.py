@@ -21,7 +21,6 @@ class Game:
         
         self.level = Level()  # instancia o level
         
-
     def run(self):
         
         while True:
