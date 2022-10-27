@@ -2,7 +2,6 @@ from cgi import print_directory
 import pygame as pg
 from settings import HITBOX_OFFSET, CONTROLKEYS
 from support import import_folder
-
 class Player(pg.sprite.Sprite):
     def __init__(self, pos, groups, obstacle_sprites):
         super().__init__(groups)
@@ -19,8 +18,6 @@ class Player(pg.sprite.Sprite):
         
         self.attackspeed = 1
         
-        self.status = 'down'
-        
         self.attacktime= 0
         
         self.attacking = False
@@ -30,7 +27,12 @@ class Player(pg.sprite.Sprite):
         self.isanimated = False
         #importanto as animações
         self.import_player_assets()
-
+        self.status = 'down'
+        self.frame_index =0
+        self.animation_speed = 0.15
+        
+        
+        
     def import_player_assets(self):
         assets_path = '../graphs/player/'
         self.animations = {'up': [], 'down': [], 'left': [], 'right': [], 'left_idle': [], 'right_idle': [
@@ -47,12 +49,10 @@ class Player(pg.sprite.Sprite):
         if keys[CONTROLKEYS['up']]:
             self.direction.y = -1
             self.status = 'up'
-            self.image = pg.image.load('../graphs/player/up/up_0.png')
             
         elif keys[CONTROLKEYS['down']]:
             self.direction.y = 1
             self.status = 'down'
-            self.image = pg.image.load('../graphs/player/down/down_0.png')
             
         else:
             self.direction.y = 0
@@ -60,17 +60,19 @@ class Player(pg.sprite.Sprite):
         if keys[CONTROLKEYS['right']]:
             self.direction.x = 1
             self.status = 'right'
-            self.image = pg.image.load('../graphs/player/right/right_0.png')
             
         elif keys[CONTROLKEYS['left']]:
             self.direction.x = -1
             self.status = 'left'
-            self.image = pg.image.load('../graphs/player/left/left_0.png')
             
         else:
             self.direction.x = 0
-        if keys[CONTROLKEYS['attack']]:
+        
+        #time for the attack animation
+        
+        if int(pg.time.get_ticks()) - self.attacktime >= (100/self.attackspeed):
             self.attacking = False
+        if keys[CONTROLKEYS['attack']]:
             if int(pg.time.get_ticks()) - self.attacktime >= (1000/self.attackspeed):
                 self.attacking = True
                 self.attacktime = pg.time.get_ticks()
@@ -82,6 +84,15 @@ class Player(pg.sprite.Sprite):
             print('interagiu')
         if keys[CONTROLKEYS['inventory']]:
             print('inventario')
+    
+    def animate(self):
+        animation = self.animations[self.status]
+        self.frame_index += self.animation_speed
+        if self.frame_index >= len(animation):
+            self.frame_index = 0
+        self.image = animation[int(self.frame_index)]
+        self.rect = self.image.get_rect(center=self.rect.center)
+    
     
     def get_status(self):
         #idle
@@ -96,7 +107,9 @@ class Player(pg.sprite.Sprite):
                     self.status = self.status.replace('_idle', '_attack')
                 else:
                     self.status = self.status + '_attack'
-        
+        else:
+            if 'attack' in self.status:
+                self.status = self.status.replace('_attack', '')
     
     
     def move(self,speed): 
@@ -147,6 +160,7 @@ class Player(pg.sprite.Sprite):
     def update(self):
         self.input()
         self.get_status()
+        self.animate()
         print(self.status)
         self.move(self.speed)
         #self.playertp()
