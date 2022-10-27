@@ -6,6 +6,7 @@ class Player(pg.sprite.Sprite):
     def __init__(self, pos, groups, obstacle_sprites):
         super().__init__(groups)
         #hitbox
+        self.image = pg.image.load('../graphs/playerdefault/0.png')
         self.rect = self.image.get_rect(topleft=pos)
         self.hitbox = self.rect.inflate(HITBOX_OFFSET['playerY'], HITBOX_OFFSET['playerX'])
         
@@ -16,10 +17,11 @@ class Player(pg.sprite.Sprite):
         #logica
         self.direction = pg.math.Vector2()
         self.attacktime= 0
-        self.attacking = False
+        self.magictime = 0
+        self. interacttime = 0
+        self.attacking = False #na real isso e usado ate pras interações, mas o nome vai ficar ataque ate eu pensar em algo melhor
         
         #setup dos graficos
-        self.image = pg.image.load('../graphs/playerdefault/0.png')
         self.obstacle_sprites = obstacle_sprites
         self.import_player_assets()
         self.status = 'down'
@@ -67,16 +69,26 @@ class Player(pg.sprite.Sprite):
                 
         if int(pg.time.get_ticks()) - self.attacktime >= (80/self.attackspeed): #muita logica envolvida pra levar em conta o attk speed, que deve ser um atributo do jogo final, mas vai valer a pena
             self.attacking = False
+        
         if keys[CONTROLKEYS['attack']]:
             if int(pg.time.get_ticks()) - self.attacktime >= (1000/self.attackspeed):
                 self.attacking = True
                 self.attacktime = pg.time.get_ticks()
+                print('receba')
+                
         if keys[CONTROLKEYS['magic']]:
             #imagino q vamos usar mais de um spell entao tem q chegar na conclusao de como q vai funcionar para calcular o cd
-            print('magica')
-            pass
+            if int(pg.time.get_ticks()) - self.magictime >= (100): #adicionar o cooldown do spell aqui, isso provavelmente vai virar uma funcao separada no futuro e receber o id do spell e o cd dele :brain:
+                self.attacking = True
+                self.magictime = pg.time.get_ticks()
+                print('olha a magica')
+        
         if keys[CONTROLKEYS['interact']]:
-            print('interagiu')
+            if int(pg.time.get_ticks()) - self.interacttime >= (100):
+                self.attacking = True
+                self.interacttime = pg.time.get_ticks()
+                print('momento interacao')
+        
         if keys[CONTROLKEYS['inventory']]:
             print('inventario')
     
