@@ -1,56 +1,67 @@
 import pygame as pg
-from settings import HITBOX_OFFSET
+from settings import HITBOX_OFFSET, CONTROLKEYS
 
 
 class Player(pg.sprite.Sprite):
     def __init__(self, pos, groups, obstacle_sprites):
         super().__init__(groups)
-        self.image = pg.image.load('../graphs/test/player.png')
+        
+        self.image = pg.image.load('../graphs/playerdefault/0.png')
+        
         self.rect = self.image.get_rect(topleft=pos)
         
-        self.hitbox = self.rect.inflate(HITBOX_OFFSET['playerY'], HITBOX_OFFSET['playerX']) #Aqui é criado uma hitbox para o player, que vai ser usada para verificar se o player colidiu com um obstáculo. O inflate é usado para criar um retangulo maior ou menor que o retangulo original. No caso, estamos criando um retangulo menor, para que a hitbox seja menor que o player.
-        self.direction = pg.math.Vector2() # direção do player é um vetor 2D, ou seja, se move em X e Y. Mais tarde vamos multiplicar isso pela velocidade do player.
+        self.hitbox = self.rect.inflate(HITBOX_OFFSET['playerY'], HITBOX_OFFSET['playerX'])
+         
+        self.direction = pg.math.Vector2() 
         
         self.speed = 20 # velocidade do player
         
         self.obstacle_sprites = obstacle_sprites
         
     def input(self):
-        '''Definimos o input do player aqui. Tudo o que pode ser apertado e o que acontecerá quando for apertado. '''
         
         keys = pg.key.get_pressed()
         
-        if keys [pg.K_w]:
+        if keys[CONTROLKEYS['up']]:
             self.direction.y = -1
             self.image = pg.image.load('../graphs/player/up/up_0.png')
-        elif keys [pg.K_s]:
+            
+        elif keys[CONTROLKEYS['down']]:
             self.direction.y = 1
             self.image = pg.image.load('../graphs/player/down/down_0.png')
+            
         else:
             self.direction.y = 0
             
-        if keys [pg.K_d]:
+        if keys[CONTROLKEYS['right']]:
             self.direction.x = 1
             self.image = pg.image.load('../graphs/player/right/right_0.png')
-        elif keys [pg.K_a]:
+            
+        elif keys[CONTROLKEYS['left']]:
             self.direction.x = -1
             self.image = pg.image.load('../graphs/player/left/left_0.png')
+            
         else:
             self.direction.x = 0
     
     
-    def move(self,speed): ##Aqui é onde o player vai se mover, e também vai ser verificado se ele colidiu com algum obstáculo.
-        '''Este método vai ser chamado quando o player se mover. Ele vai mover o player de acordo com a direção que ele está indo, e a velocidade que ele está indo. Também são chamados os métodos de colisão aqui. '''
+    def move(self,speed): 
+        
         if self.direction.magnitude() != 0:
             self.direction = self.direction.normalize()
+            
         self.hitbox.x += self.direction.x * speed
+        
         self.collision('horizontal')
+        
         self.hitbox.y += self.direction.y * speed
+        
         self.collision('vertical')
+        
         self.rect.center = self.hitbox.center
+        
     def collision(self,direction):
-        '''Este método vai ser chamado quando o player colidir com um obstáculo. Basicamente ele vai verificar se o player está colidindo com um obstáculo, e se estiver, ele vai fazer o player voltar para a posição anterior. O pygame não consegue checkar a direção da colisão com obstáculos, então vamos fazer isso manualmente. Resumidamente, se o jogador estiver se movendo para a direita, é impossível que ele tenha uma colisão com um obstáculo à esquerda, então não vamos checar isso. '''
-
+        
         if direction == 'horizontal':
             for sprite in self.obstacle_sprites:
                 if sprite.hitbox.colliderect(self.hitbox):
@@ -58,6 +69,7 @@ class Player(pg.sprite.Sprite):
                         self.hitbox.right = sprite.hitbox.left
                     if self.direction.x < 0: 
                         self.hitbox.left = sprite.hitbox.right
+                        
         if direction == 'vertical':
             for sprite in self.obstacle_sprites:
                 if sprite.hitbox.colliderect(self.hitbox):
@@ -65,6 +77,21 @@ class Player(pg.sprite.Sprite):
                         self.hitbox.bottom = sprite.hitbox.top
                     if self.direction.y < 0: 
                         self.hitbox.top = sprite.hitbox.bottom
+                        
+    def playertp(self):
+        
+        keys = pg.key.get_pressed()
+        
+        if keys[pg.K_F2]: #Não vamos definir no settings porque é só debug
+            print('tp')
+            X = int(input('X:'))
+            Y = int(input('Y:'))
+            self.hitbox.x = X
+            self.hitbox.y = Y
+            
     def update(self):
         self.input()
+        
         self.move(self.speed)
+        
+        self.playertp()
