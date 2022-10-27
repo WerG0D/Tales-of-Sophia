@@ -23,6 +23,8 @@ class Player(pg.sprite.Sprite):
         
         self.attacktime= 0
         
+        self.attacking = False
+        
         self.obstacle_sprites = obstacle_sprites
         
         self.isanimated = False
@@ -67,8 +69,10 @@ class Player(pg.sprite.Sprite):
             
         else:
             self.direction.x = 0
-        if keys[CONTROLKEYS['attack']] and int(pg.time.get_ticks()) - self.attacktime >= (1000/self.attackspeed):
-                print('atacou')
+        if keys[CONTROLKEYS['attack']]:
+            self.attacking = False
+            if int(pg.time.get_ticks()) - self.attacktime >= (1000/self.attackspeed):
+                self.attacking = True
                 self.attacktime = pg.time.get_ticks()
         if keys[CONTROLKEYS['magic']]:
             #imagino q vamos usar mais de um spell entao tem q chegar na conclusao de como q vai funcionar para calcular o cd
@@ -81,9 +85,17 @@ class Player(pg.sprite.Sprite):
     
     def get_status(self):
         #idle
-        if self.direction.x == 0 and self.direction.y == 0 and not 'idle' in self.status:
+        if self.direction.x == 0 and self.direction.y == 0 and 'idle' not in self.status and 'attack' not in self.status:
             self.status = self.status + '_idle'
-            
+        #attack
+        if self.attacking:
+            self.direction.x = 0
+            self.direction.y = 0
+            if 'attack' not in self.status:
+                if 'idle' in self.status:
+                    self.status = self.status.replace('_idle', '_attack')
+                else:
+                    self.status = self.status + '_attack'
         
     
     
@@ -135,5 +147,6 @@ class Player(pg.sprite.Sprite):
     def update(self):
         self.input()
         self.get_status()
+        print(self.status)
         self.move(self.speed)
         #self.playertp()
