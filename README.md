@@ -1,12 +1,10 @@
 # Tales of Sophia
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
-
-> Projeto Tales of Sophia, feito com amor. Tales of Sophia Project, made with love.
-
 ![Last Commit](https://img.shields.io/github/last-commit/WerG0D/Tales-of-Sophia?color=yellow&style=for-the-badge)
 
-![Watchers](https://img.shields.io/github/watchers/WerG0D/Tales-of-Sophia?style=social)
+
+> Projeto Tales of Sophia, feito com amor. Tales of Sophia Project, made with love.
 ## Table of Contents
 - [Playing Tales of Sophie](#playing-tales-of-sophie)
 - [Motivation and Intent](#motivation-and-intent)
