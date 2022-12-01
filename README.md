@@ -11,7 +11,7 @@
 ## Table of Contents
 - [Playing Tales of Sophie](#playing-tales-of-sophie)
 - [Motivation and Intent](#motivation-and-intent)
-- [Design Goals](#design-goals-&-pillars)
+- [Design Goals](#design-goals)
 - [ToS Philosophies](#tos-philosophies)
 - [License](#license)
 - [Team](#team)
@@ -24,7 +24,7 @@ To play this game, you will need clone that repo and install requirements.txt. T
 
 >The game objective is deliver a brand new rpg and storytelling experience. Also, the mechanics should be complex to improve ourself as developers.
 
-## Design Goals(#design-goals)
+## Design Goals
 Make a game in pygame is REALLY DIFFICULT. Almost a death clause, for real.
 
 So, to turn off the difficults we split the game objectives in three;
