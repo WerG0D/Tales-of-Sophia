@@ -12,7 +12,7 @@ class Level:
         # Grupo de sprites:
         
         self.visible_sprites = CameraGroup() # Grupo de sprites visíveis na tela, tudo que for visivel vai ter esse subgrupo. O subgrupo vai ser usado para fazer a camera funcionar.
-        self.obstacle_sprites = pg.sprite.Group() # Grupo de sprites que são obstáculos, ou seja, não podem ser atravessados e terão colisão com o player. Tudo que tiver essa proprieadade vai ter esse subgrupo.
+        self.obstacle_sprites = pg.sprite.Group() # Grupo de sprites que são obstáculos, ou seja, não podem ser atravessados e terão colisão com o player. Tudo que tiver essa propriedade vai ter esse subgrupo.
         self.display_surface = pg.display.get_surface() 
         
         #logica do mapa
@@ -34,7 +34,7 @@ class Level:
         graphics = {
             'objects': import_folder('../graphs/objects'),
             'invis': import_folder('../graphs/invis'),
-            'player': import_folder('../graphs/plaerdefault'),
+            'player': import_folder('../graphs/playerdefault'),
         }
         
         
