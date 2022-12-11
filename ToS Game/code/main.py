@@ -13,7 +13,7 @@ class Game:
         
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         
-        pg.display.set_caption('Tales of sophia')
+        pg.display.set_caption('Tales of Sophia')
         
         self.clock = pg.time.Clock()
         
