@@ -50,20 +50,4 @@ class Game:
 
 if __name__ == '__main__':
     game = Game()
-    
-#Menu:
-class Menu():
-
-    surface = pg.display.set_mode((WIDTH, HEIGHT))
-
-    def start_game():
-        game.run()
-    
-    menugame = pg_menu.Menu('Tales of Sophia', WIDTH, HEIGHT, theme=pg_menu.themes.THEME_DARK)
-    
-    menugame.add.button('Start Game', start_game)
-    
-    menugame.add.button('Quit', pg_menu.events.EXIT)
-    
-    menugame.mainloop(surface)
-#
+    game.run()
